@@ -10,11 +10,13 @@
 #ifndef EPICSTHREAD_H
 #define EPICSTHREAD_H
 
-#include <nds3/definitions.h>
-#include <nds3impl/factoryBaseImpl.h>
-#include <nds3impl/threadBaseImpl.h>
-#include <epicsThread.h>
 #include <mutex>
+
+#include <epicsThread.h>
+
+#include <nds3/definitions.h>
+#include <nds3/impl/factoryBaseImpl.h>
+#include <nds3/impl/threadBaseImpl.h>
 
 namespace nds
 {

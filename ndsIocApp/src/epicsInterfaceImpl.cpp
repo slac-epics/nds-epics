@@ -13,11 +13,7 @@
  * Contains the implementation of the interface to the EPICS system.
  *
  */
-#include "../include/epicsInterfaceImpl.h"
-#include <nds3impl/pvBaseImpl.h>
-#include <nds3impl/portImpl.h>
-#include <nds3/pvBase.h>
-#include <nds3/exceptions.h>
+
 #include <cstdint>
 #include <sstream>
 #include <ostream>
@@ -25,9 +21,15 @@
 #include <stdexcept>
 #include <memory.h>
 
-#include "../include/epicsFactoryImpl.h"
+#include <iocsh.h>
 
-#include "iocsh.h"
+#include <nds3/pvBase.h>
+#include <nds3/exceptions.h>
+#include <nds3/impl/pvBaseImpl.h>
+#include <nds3/impl/portImpl.h>
+
+#include "nds3/impl/epicsInterfaceImpl.h"
+#include "nds3/impl/epicsFactoryImpl.h"
 
 namespace nds
 {

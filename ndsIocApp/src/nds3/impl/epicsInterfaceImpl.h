@@ -10,11 +10,13 @@
 #ifndef NDSEPICSINTERFACEIMPL_H
 #define NDSEPICSINTERFACEIMPL_H
 
-#include <asynPortDriver.h>
 #include <string>
 #include <vector>
 #include <set>
-#include <nds3impl/interfaceBaseImpl.h>
+
+#include <asynPortDriver.h>
+
+#include <nds3/impl/interfaceBaseImpl.h>
 
 namespace nds
 {
