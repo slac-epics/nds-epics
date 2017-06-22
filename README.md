@@ -1,15 +1,21 @@
 # EPICS layer for NDS3
 
-This project contains the EPICS layer for the NDS3 framework.
+This project contains the EPICS layer for the NDS3 framework. It has three important directories,`ndsSup`, `demo` and `demo2`.
 
-In order to compile and use this project YOU HAVE TO INSTALL NDS3 first.
+* `ndsSup` contains the NDS EPICS layer software library `nds3epics`.
+* `demo` contains the first demonstration IOC which demostrates that drivers can be loaded at runtime before IOC init instead of being linked against. The drivers used in the demos are in the NDS3 repository.
+* `demo2` contains the second demonstration IOC which is using Gnu Linker to load the driver instead.
 
-The compilation produces an IOC Application that can load and execute device supports written using the NDS3 framework.
-The DBD file produced by the compilation must reside in the same folder where the executable epicsNdsControlSystem is present.
+In order to compile and use this project [NDS3](https://github.com/cosylab/nds3) *has to be* installed.
 
 [![Build Status](https://travis-ci.org/Cosylab/nds3_epics.svg?branch=master)](https://travis-ci.org/Cosylab/nds3_epics)
 
-## Compilation
+## Manual Installation
+
+## Prerequisites
+
+* [EPICS Base](http://www.aps.anl.gov/epics/base/index.php)
+* [Asyn](http://www.aps.anl.gov/epics/modules/soft/asyn/)
 
 ### Solution 1
 
@@ -67,5 +73,9 @@ Example of usage:
     test1-SquareWave-StateMachine-setState
     epics> nds switchOn test1-SinWave
     epics> nds start test1-SinWave
+
+
+## Create a driver with EPICS build facility
+- makeBaseApp.pl -t example test
 
 
