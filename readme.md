@@ -7,6 +7,8 @@ In order to compile and use this project YOU HAVE TO INSTALL NDS3 first.
 The compilation produces an IOC Application that can load and execute device supports written using the NDS3 framework.
 The DBD file produced by the compilation must reside in the same folder where the executable epicsNdsControlSystem is present.
 
+[![Build Status](https://travis-ci.org/Cosylab/nds3_epics.svg?branch=master)](https://travis-ci.org/Cosylab/nds3_epics)
+
 ## Compilation
 
 ### Solution 1
