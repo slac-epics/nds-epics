@@ -13,12 +13,13 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "epicsExit.h"
-#include "epicsThread.h"
-#include "iocsh.h"
+#include <epicsExit.h>
+#include <epicsThread.h>
+#include <iocsh.h>
 
 #include <nds3/factory.h>
-#include "../include/epicsFactoryImpl.h"
+
+#include "nds3/impl/epicsFactoryImpl.h"
 
 int main(int argc,char *argv[])
 {

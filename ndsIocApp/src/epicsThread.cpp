@@ -7,7 +7,7 @@
  * file included in the distribution.
  */
 
-#include "../include/epicsThread.h"
+#include "nds3/impl/epicsThread.h"
 
 namespace nds
 {

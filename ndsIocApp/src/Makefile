@@ -38,7 +38,8 @@ USR_CPPFLAGS=-std=c++0x -Wall -Wextra -pedantic -fPIC -pthread
 epicsNdsControlSystem_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # ...and the other needed libs
-epicsNdsControlSystem_LDFLAGS += -lrt -ldl -lpthread -lnds3
+USR_LIBS += nds3
+nds3_DIR = $(NDS3)
 
 DBDINSTALL += epicsNdsControlSystem.dbd
 

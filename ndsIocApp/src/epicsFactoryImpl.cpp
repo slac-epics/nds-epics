@@ -7,6 +7,15 @@
  * file included in the distribution.
  */
 
+#include <iostream>
+#include <fstream>
+#include <link.h>
+#include <elf.h>
+#include <dlfcn.h>
+#include <set>
+#include <string>
+#include <sstream>
+
 #include <epicsStdlib.h>
 #include <iocshRegisterCommon.h>
 #include <registryCommon.h>
@@ -15,20 +24,10 @@
 #include <errlog.h>
 #include <epicsExit.h>
 
-#include "../include/epicsFactoryImpl.h"
-#include "../include/epicsInterfaceImpl.h"
-#include "../include/epicsThread.h"
 #include "nds3/exceptions.h"
-
-#include <iostream>
-#include <fstream>
-#include "/usr/include/link.h"
-#include <elf.h>
-#include <dlfcn.h>
-
-#include <set>
-#include <string>
-#include <sstream>
+#include "nds3/impl/epicsFactoryImpl.h"
+#include "nds3/impl/epicsInterfaceImpl.h"
+#include "nds3/impl/epicsThread.h"
 
 // Include embedded dbd file
 //#include "../dbd/dbdfile.h"

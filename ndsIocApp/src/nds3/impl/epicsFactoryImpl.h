@@ -10,21 +10,20 @@
 #ifndef NDSFACTORYIMPL_CPP
 #define NDSFACTORYIMPL_CPP
 
-#include <nds3/definitions.h>
-#include <nds3impl/factoryBaseImpl.h>
-#include <nds3impl/logStreamGetterImpl.h>
-#include <dbStaticLib.h>
-#include <initHooks.h>
-
 #include <vector>
 #include <list>
 #include <string>
 #include <set>
 #include <sstream>
 
+#include <dbStaticLib.h>
+#include <initHooks.h>
+#include <registryCommon.h>
 #include <iocsh.h>
 
-#include <registryCommon.h>
+#include <nds3/definitions.h>
+#include <nds3/impl/factoryBaseImpl.h>
+#include <nds3/impl/logStreamGetterImpl.h>
 
 namespace nds
 {
