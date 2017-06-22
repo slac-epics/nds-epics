@@ -87,7 +87,7 @@ void EpicsFactoryImpl::createNdsDevice(const iocshArgBuf * arguments)
     {
         std::ostringstream errorString;
         errorString << e.what() << std::endl;
-        errlogSevPrintf(errlogInfo, errorString.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", errorString.str().c_str());
     }
 }
 
@@ -107,7 +107,7 @@ void EpicsFactoryImpl::loadNdsDriver(const iocshArgBuf * arguments)
     {
         std::ostringstream errorString;
         errorString << e.what() << std::endl;
-        errlogSevPrintf(errlogInfo, errorString.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", errorString.str().c_str());
     }
 }
 
@@ -128,7 +128,7 @@ void EpicsFactoryImpl::loadNdsNamingRules(const iocshArgBuf * arguments)
     {
         std::ostringstream errorString;
         errorString << e.what() << std::endl;
-        errlogSevPrintf(errlogInfo, errorString.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", errorString.str().c_str());
     }
 }
 
@@ -148,7 +148,7 @@ void EpicsFactoryImpl::enableNdsNamingRules(const iocshArgBuf * arguments)
     {
         std::ostringstream errorString;
         errorString << e.what() << std::endl;
-        errlogSevPrintf(errlogInfo, errorString.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", errorString.str().c_str());
     }
 }
 
@@ -173,7 +173,7 @@ void EpicsFactoryImpl::ndsUserCommand(const iocshArgBuf * arguments)
         {
             commandsList << " " << scanCommands->first << std::endl;
         }
-        errlogSevPrintf(errlogInfo, commandsList.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", commandsList.str().c_str());
         return;
     }
 
@@ -189,7 +189,7 @@ void EpicsFactoryImpl::ndsUserCommand(const iocshArgBuf * arguments)
         {
             nodesList << " " << scanNodes->first << std::endl;
         }
-        errlogSevPrintf(errlogInfo, nodesList.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", nodesList.str().c_str());
         return;
 
     }
@@ -205,7 +205,7 @@ void EpicsFactoryImpl::ndsUserCommand(const iocshArgBuf * arguments)
     {
         std::ostringstream errorString;
         errorString << "Expected " << (findCommand->second.m_argumentsNumber) << " arguments but found " << parameters.size() << " instead" << std::endl;
-        errlogSevPrintf(errlogInfo, errorString.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", errorString.str().c_str());
         return;
     }
 
@@ -221,7 +221,7 @@ void EpicsFactoryImpl::ndsUserCommand(const iocshArgBuf * arguments)
     {
         std::ostringstream errorString;
         errorString << e.what() << std::endl;
-        errlogSevPrintf(errlogInfo, errorString.str().c_str());
+        errlogSevPrintf(errlogInfo, "%s", errorString.str().c_str());
     }
 
 }
@@ -393,16 +393,16 @@ void EpicsFactoryImpl::log(const std::string &logString, logLevel_t logLevel)
     switch(logLevel)
     {
     case logLevel_t::debug:
-        errlogSevPrintf(errlogInfo, logString.c_str());
+        errlogSevPrintf(errlogInfo, "%s", logString.c_str());
         break;
     case logLevel_t::info:
-        errlogSevPrintf(errlogInfo, logString.c_str());
+        errlogSevPrintf(errlogInfo, "%s", logString.c_str());
         break;
     case logLevel_t::warning:
-        errlogSevPrintf(errlogMinor, logString.c_str());
+        errlogSevPrintf(errlogMinor, "%s", logString.c_str());
         break;
     case logLevel_t::error:
-        errlogSevPrintf(errlogMajor, logString.c_str());
+        errlogSevPrintf(errlogMajor, "%s", logString.c_str());
         break;
     default:
         throw std::logic_error("Cannot log with severity level set to none");
