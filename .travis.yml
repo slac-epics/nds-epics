@@ -11,8 +11,8 @@ env:
         - BASE=https://www.aps.anl.gov/epics/download/base/baseR3.14.12.6.tar.gz
 
 script:
-    - wget $BASE && tar xf $(basename $BASE) && (cd $(basename -s .tar.gz ${BASE/R/-}) && make)
-    - wget $ASYN && tar xf $(basename $ASYN) && (cd $(basename -s .tar.gz $ASYN) && echo 'EPICS_BASE=../${TOP}/'$(basename -s .tar.gz ${BASE/R/-}) > configure/RELEASE && make)
+    - wget $BASE && tar xf $(basename $BASE) && (cd $(basename -s .tar.gz ${BASE/R/-}) && make -s)
+    - wget $ASYN && tar xf $(basename $ASYN) && (cd $(basename -s .tar.gz $ASYN) && echo 'EPICS_BASE=../${TOP}/'$(basename -s .tar.gz ${BASE/R/-}) > configure/RELEASE && make -s)
     - wget ${NDS3} -O nds3-master.tar.gz && tar xf nds3-master.tar.gz && mkdir nds3-master/build && (cd nds3-master/build && cmake ../CMake && make)
     - echo -e 'EPICS_BASE=${TOP}/'$(basename -s .tar.gz ${BASE/R/-})'\nASYN=${TOP}/'$(basename -s .tar.gz ${ASYN})'\nNDS3=${TOP}/nds3-master/build' > configure/RELEASE.local
     - make CPATH=${TRAVIS_BUILD_DIR}/nds3-master/include
