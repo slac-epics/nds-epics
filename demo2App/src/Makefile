@@ -26,6 +26,9 @@ demo2_LIBS += oscilloscope nds3epics nds3 asyn
 oscilloscope_DIR += $(NDS3OSCILLOSCOPE)
 demo2_LDFLAGS += -Wl,--no-as-needed
 
+# Where to find NDS3 if it isn't installed as a system library
+nds3_DIR += $(NDS3)
+
 # demo2_registerRecordDeviceDriver.cpp derives from demo2.dbd
 demo2_SRCS += demo2_registerRecordDeviceDriver.cpp
 
