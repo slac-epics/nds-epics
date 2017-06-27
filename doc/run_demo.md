@@ -1,6 +1,8 @@
 Install EPICS
 
     sudo apt-get install build-essential libreadline-dev
+    # sudo yum install readline-devel
+    # sudo yum groupinstall "Development tools"
     wget -q https://www.aps.anl.gov/epics/download/base/base-3.15.5.tar.gz
     tar xf base-3.15.5.tar.gz && cd base-3.15.5 && make -s
 
@@ -11,7 +13,7 @@ Install Asyn
 
 Pre-step for RHEL users that don't override the default install location
 
-    echo "/usr/local/lib" > /etc/ld.so.conf.d/local.conf
+    sudo sh -c 'echo /usr/local/lib > /etc/ld.so.conf.d/local.conf'
 
 Install NDS3
 
@@ -20,8 +22,8 @@ Install NDS3
     mkdir build
     cd build
     cmake ../CMake
-    make install
-    ldconfig
+    sudo make install
+    sudo ldconfig
 
 Install NDS3 Demo Drivers
 
@@ -29,7 +31,7 @@ Install NDS3 Demo Drivers
     mkdir build
     cd build
     cmake ../CMake
-    make install
+    sudo make install
 
 Build Demo IOC.
 

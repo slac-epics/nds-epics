@@ -1,6 +1,6 @@
 # EPICS layer for NDS3
 
-This project contains the EPICS layer for the NDS3 framework. It has three important directories,`ndsSup`, `demo` and `demo2`.
+This project contains the EPICS layer for the NDS3 framework. It has three important directories, `ndsSup`, `demo` and `demo2`.
 
 * `ndsSup` contains the NDS EPICS layer software library `nds3epics`.
 * `demo` contains the first demonstration IOC which demostrates that drivers can be loaded at runtime before IOC init instead of being linked against. The drivers used in the demos are in the NDS3 repository.
@@ -19,12 +19,11 @@ In order to compile and use this project [NDS3](https://github.com/cosylab/nds3)
 
 ### Solution 1
 
-- modify the configure/RELEASE file and set the proper folders
+- update the configure/RELEASE file with the correct location for EPICS base, Asyn and NDS3.
 - run make from the project root folder
-- copy the dbd file from the dbd folder to the bin/{architecture} folder
+- run IOC with `cd iocBoot/iocdemo; ../../bin/linux-x86_64/demo st.cmd`
 
-Run the executable with
-    ./bin/linux-x86_64/epicsNdsControlSystem
+More detailed instructions can be found in [run_demo.md](doc/run_demo.md).
 
 ### Solution 2
 
@@ -38,44 +37,59 @@ Ant internally executes the same steps as in the "Solution 1", taking the proper
 Run the executable with
     ./artifacts/epicsNdsControlSystem
 
-
 ## Usage
 
 Example of usage:
 
-    $> epicsNdsControlSystem
-    epics> ndsLoadDriver '/home/codac-dev/Documents/oscilloscope-build-desktop-Qt_4_6_2_Debug/liboscilloscope.so.1' 
-    epics> ndsCreateDevice Oscilloscope test1
-    epics> iocInit
+    [root@8b8481acd71f iocdemo]# ../../bin/linux-x86_64/demo st.cmd
+    #!../../bin/linux-x86_64/demo
+    ## You may have to change demo to something else
+    ## everywhere it appears in this file
+    < envPaths
+    epicsEnvSet("IOC","iocdemo")
+    epicsEnvSet("TOP","/root/nds3_epics")
+    epicsEnvSet("ASYN","/root/asyn4-31")
+    epicsEnvSet("NDS3","/usr/lib64")
+    epicsEnvSet("NDS3OSCILLOSCOPE","/usr/lib64/nds3")
+    epicsEnvSet("EPICS_BASE","/root/base-3.15.5")
+    ## Register all support components
+    dbLoadDatabase("../../dbd/demo.dbd",0,0)
+    demo_registerRecordDeviceDriver(pdbbase)
+    ndsLoadDriver("/usr/lib64/nds3/liboscilloscope.so")
+    ndsCreateDevice(Oscilloscope, "test1")
+    iocInit()
     Starting iocInit
     ############################################################################
-    ## EPICS R3.15.1 $Date: Mon 2014-12-01 15:07:38 -0600$
-    ## EPICS Base built Feb 20 2015
+    ## EPICS R3.15.5
+    ## EPICS Base built Jun 26 2017
     ############################################################################
+    Warning: RSRV has empty beacon address list
     iocRun: All initialization complete
+    DBR_UCHAR:          1         0x1
+    DBR_UCHAR:          1         0x1
+    DBR_UCHAR:          1         0x1
+    DBR_UCHAR:          1         0x1
+    DBR_UCHAR:          1         0x1
+    DBR_UCHAR:          1         0x1
     epics> dbl
-    test1-SinWave-Duration
-    test1-SinWave-Frequency
-    test1-SquareWave-Duration
-    test1-SquareWave-Frequency
-    test1-Output
-    test1-SinWave-Data
-    test1-SquareWave-Data
     test1-SinWave-StateMachine-getGlobalState
     test1-SinWave-StateMachine-getState
     test1-SquareWave-StateMachine-getGlobalState
     test1-SquareWave-StateMachine-getState
+    test1-SinWave-StateMachine-setState
+    test1-SquareWave-StateMachine-setState
+    test1-SinWave-Duration
+    test1-SinWave-Frequency
+    test1-SquareWave-Duration
+    test1-SquareWave-Frequency
+    test1-SinWave-Data
+    test1-SquareWave-Data
     test1-SinWave-decimation
     test1-SquareWave-decimation
     test1-maxSinAmplitude
     test1-maxSquareAmplitude
-    test1-SinWave-StateMachine-setState
-    test1-SquareWave-StateMachine-setState
     epics> nds switchOn test1-SinWave
     epics> nds start test1-SinWave
 
-
 ## Create a driver with EPICS build facility
 - makeBaseApp.pl -t example test
-
-
