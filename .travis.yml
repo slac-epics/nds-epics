@@ -11,8 +11,8 @@ env:
         - BASE=https://www.aps.anl.gov/epics/download/base/baseR3.14.12.6.tar.gz
 
 script:
-    - wget $BASE && tar xf $(basename $BASE) && (cd $(basename -s .tar.gz ${BASE/R/-}) && make)
-    - wget $ASYN && tar xf $(basename $ASYN) && (cd $(basename -s .tar.gz $ASYN) && echo 'EPICS_BASE=../${TOP}/'$(basename -s .tar.gz ${BASE/R/-}) > configure/RELEASE && make)
-    - wget ${NDS3} -O nds3-master.tar.gz && tar xf nds3-master.tar.gz && mkdir nds3-master/build && (cd nds3-master/build && cmake ../CMake && make)
-    - echo -e 'EPICS_BASE=${TOP}/'$(basename -s .tar.gz ${BASE/R/-})'\nASYN=${TOP}/'$(basename -s .tar.gz ${ASYN})'\nNDS3=${TOP}/nds3-master/build' > configure/RELEASE.local
-    - make CPATH=${TRAVIS_BUILD_DIR}/nds3-master/include
+    - wget -q $BASE && tar xf $(basename $BASE) && (cd $(basename -s .tar.gz ${BASE/R/-}) && make -s)
+    - wget -q $ASYN && tar xf $(basename $ASYN) && (cd $(basename -s .tar.gz $ASYN) && echo 'EPICS_BASE=../${TOP}/'$(basename -s .tar.gz ${BASE/R/-}) > configure/RELEASE && make -s)
+    - wget -q ${NDS3} -O nds3-master.tar.gz && tar xf nds3-master.tar.gz && mkdir nds3-master/build && (cd nds3-master/build && cmake ../CMake && make) && mkdir nds3-master/doc/examples/build && (cd nds3-master/doc/examples/build && cmake ../CMake -DLIBRARY_LOCATION=../../../build && make)
+    - echo -e 'EPICS_BASE=${TOP}/'$(basename -s .tar.gz ${BASE/R/-})'\nASYN=${TOP}/'$(basename -s .tar.gz ${ASYN})'\nNDS3=${TOP}/nds3-master/build\nNDS3OSCILLOSCOPE=${TOP}/nds3-master/doc/examples/build' > configure/RELEASE.local
+    - make CPATH=${TRAVIS_BUILD_DIR}/nds3-master/include && cd iocBoot/iocdemo2 && ../../bin/linux-x86_64/demo2 st.cmd <<< 'exit'

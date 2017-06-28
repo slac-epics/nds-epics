@@ -26,7 +26,12 @@
 MODULES = /path/to/modules
 # nds3_epics depends on ASYN and NDS3
 ASYN=$(MODULES)/asyn
-NDS3=$(MODULES)/nds3
+NDS3=/usr/local/lib
+#NDS3=/usr/lib/x86_64-linux-gnu
+#NDS3=/usr/lib64
+
+# used for demo2 app
+NDS3OSCILLOSCOPE=$(NDS3)/nds3
 
 # If using the sequencer, point SNCSEQ at its top directory:
 #SNCSEQ = $(MODULES)/seq-ver
@@ -42,4 +47,3 @@ EPICS_BASE = /usr/local/epics/base-3.15.5
 # without having to modify the configure/RELEASE file itself.
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/configure/RELEASE.local
-

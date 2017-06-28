@@ -29,3 +29,6 @@ iocBoot_DEPEND_DIRS += $(filter %App,$(DIRS))
 # Add any additional dependency rules here:
 
 include $(TOP)/configure/RULES_TOP
+
+# Don't uninstall my doc folder...
+UNINSTALL_DIRS := $(filter-out $(INSTALL_DOC),$(UNINSTALL_DIRS))
