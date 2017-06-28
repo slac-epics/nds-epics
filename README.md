@@ -12,30 +12,19 @@ In order to compile and use this project [NDS3](https://github.com/cosylab/nds3)
 
 ## Manual Installation
 
-## Prerequisites
+### Prerequisites
 
 * [EPICS Base](http://www.aps.anl.gov/epics/base/index.php)
 * [Asyn](http://www.aps.anl.gov/epics/modules/soft/asyn/)
+* [NDS3](https://github.com/cosylab/nds3)
 
-### Solution 1
+### Build and run
 
-- update the configure/RELEASE file with the correct location for EPICS base, Asyn and NDS3.
-- run make from the project root folder
-- run IOC with `cd iocBoot/iocdemo; ../../bin/linux-x86_64/demo st.cmd`
+- Update the configure/RELEASE file with the correct location for EPICS base, Asyn and NDS3.
+- Run `make` from the project root folder.
+- Run IOC with `cd iocBoot/iocdemo && ../../bin/linux-x86_64/demo st.cmd`.
 
 More detailed instructions can be found in [run_demo.md](doc/run_demo.md).
-
-### Solution 2
-
-- Make sure that the enviroment variables EPICS_BASE and EPICS_MODULES are set correctly
-- run "ant" from the project root folder 
-
-Ant internally executes the same steps as in the "Solution 1", taking the proper setting from the configuration
- variables. The results are copied into the folder "artifacts" (created by ant) while the build is executed
- in a temporary folder "build" (also created by ant).
-
-Run the executable with
-    ./artifacts/epicsNdsControlSystem
 
 ## Usage
 
@@ -90,6 +79,3 @@ Example of usage:
     test1-maxSquareAmplitude
     epics> nds switchOn test1-SinWave
     epics> nds start test1-SinWave
-
-## Create a driver with EPICS build facility
-- makeBaseApp.pl -t example test
