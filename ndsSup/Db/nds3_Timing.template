@@ -1,0 +1,121 @@
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="Timing-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="Timing-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="Timing-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-StateMachine-setState")
+}
+
+# Rest of PVs
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-ClkFrequency") {
+    field(DESC, "Clock frequency")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-ClkFrequency")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-ClkMultiplier") {
+    field(DESC, "Clock multiplier")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-ClkMultiplier")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-HTime") {
+    field(DESC, "Get Time in UTC format")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(SCAN, "I/O Intr")
+    field(NELM, "255")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-HTime")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-RefTimeBase") {
+    field(DESC, "Reference time Base (UTC) [s,ns]")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, "2")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-RefTimeBase")
+}
+
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-RefTimeBaseSec") {
+	field(DESC, "RefTimeBase in Seconds (UTC)")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-RefTimeBase CP MS")
+	field(EGU,  "s")
+	field(MALM, "2")
+	field(INDX, "0")
+}
+
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-RefTimeBaseNano") {
+	field(DESC, "RefTimeBase in Nanoseconds (UTC)")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-RefTimeBase CP MS")
+	field(EGU,  "ns")
+	field(MALM, "2")
+	field(INDX, "1")
+}
+
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-SecsLastSync") {
+    field(DESC, "Seconds since last synchronisation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-SecsLastSync")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-SyncStatus") {
+    field(DESC, "Synchronization status")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-SyncStatus")
+    field(ZRVL, 0)
+    field(ZRST, "NOT_SYNCED")
+    field(ONVL, 1)
+    field(ONST, "SYNCING")
+    field(TWVL, 2)
+    field(TWST, "SYNCED")
+    field(THVL, 3)
+    field(THST, "LOST_SYNC")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-Time") {
+    field(DESC, "Get Time")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(SCAN, "I/O Intr")
+    field(NELM, "2")	
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMING_NAME)-Time")
+}
+
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-TimeSec") {
+	field(DESC, "Get Time in Seconds")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-Time CP MS")
+	field(EGU,  "s")
+	field(MALM, "2")
+	field(INDX, "0")
+}
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-TimeNano") {
+	field(DESC, "Get Time in Nanoseconds")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMING_NAME)-Time CP MS")
+	field(EGU,  "ns")
+	field(MALM, "2")
+	field(INDX, "1")
+}

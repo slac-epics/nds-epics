@@ -1,0 +1,23 @@
+file "nds3_Routing.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    ROUTING_NAME
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "RoutingNode-",
+    "STM"
+    "RoutingNode"
+}
+
+}

@@ -1,0 +1,228 @@
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataAcquisitionNode-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataAcquisitionNode-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataAcquisitionNode-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-StateMachine-setState")
+}
+
+# Rest of PVs
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Data") {
+    field(DESC, "Acquired data")
+    field(DTYP, "$(DATATYPE)In")
+    field(FTVL, "DOUBLE")
+    field(NELM, "$(NELM)")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Data")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Decimation") {
+    field(DESC, "Decimation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Decimation")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-DecimationType") {
+    field(DESC, "Decimation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-DecimationType")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Gain") {
+    field(DESC, "Gain of the Channel")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Gain")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Gain_RBV") {
+    field(DESC, "Gain of the Channel")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Gain_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Offset") {
+    field(DESC, "Offset")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Offset")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Offset_RBV") {
+    field(DESC, "Offset ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Offset_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-BandWidth") {
+    field(DESC, "BandWidth")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-BandWidth")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-BandWidth_RBV") {
+    field(DESC, "BandWidth ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-BandWidth_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Resolution") {
+    field(DESC, "Number of Bits per Sample")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Resolution")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Resolution_RBV") {
+    field(DESC, "Number of Bits per Sample ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Resolution_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Impedance") {
+    field(DESC, "Impedance")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Impedance")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Impedance_RBV") {
+    field(DESC, "Impedance ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Impedance_RBV")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Coupling") {
+    field(DESC, "Coupling: AC or DC")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Coupling")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Coupling_RBV") {
+    field(DESC, "Coupling: AC or DC ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Coupling_RBV")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-SignalRefType") {
+    field(DESC, "Differential or Single Ended")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-SignalRefType")
+    field(ZNAM, "SingleEnded")
+    field(ONAM, "Differential")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-SignalRefType_RBV") {
+    field(DESC, "Differential or Single Ended")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-SignalRefType_RBV")
+    field(ZNAM, "SingleEnded")
+    field(ONAM, "Differential")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Ground") {
+    field(DESC, "Ground State")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Ground")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-Ground_RBV") {
+    field(DESC, "Ground State ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-Ground_RBV")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-NoB") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-NumberOfPushedDataBlocks")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-DMABufferSize") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-DMABufferSize")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-DMAEnable") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-DMAEnable")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-DMAEnable_RBV") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-DMAEnable_RBV")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-DMANumChannels") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-DMANumChannels")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-DMAFrameType") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-DMAFrameType")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-DMASampleSize") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-DMASampleSize")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-SamplingRate") {
+    field(DESC, "Number of Bits per Sample")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-SamplingRate")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAACQUISITION_NAME)-SamplingRate_RBV") {
+    field(DESC, "Number of Bits per Sample ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAACQUISITION_NAME)-SamplingRate_RBV")
+}

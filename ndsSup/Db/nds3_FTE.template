@@ -1,0 +1,254 @@
+#STM of the node
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="FTENode-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-StateMachine-getGlobalState")
+    field(PINI, 0)
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="FTENode-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-StateMachine-getState")
+    field(PINI, 0) 
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="FTENode-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-StateMachine-setState")
+    field(PINI, 0) 
+}
+
+#PVs for Future Time Event generation
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-TerminalSet") {
+    field(DESC, "Terminal to set FTE")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-TerminalSet")
+   
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-ModeSet") {
+    field(DESC, "Mode (Single, Pulse, Clk, InmLVL)")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-ModeSet")
+    
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-StartTimeSet") {
+    field(DESC, "Start Time of FTE")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(SCAN, "Passive")
+    field(NELM, "2")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-StartTimeSet")
+       
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-StopTimeSet") {
+    field(DESC, "Stop Time of FTE")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(SCAN, "Passive")
+    field(NELM, "2")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-StopTimeSet")
+}
+
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-LevelSet") {
+    field(DESC, "Signal level of FTE")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-LevelSet")
+    field(ZNAM,"HIGH")
+    field(ONAM,"LOW")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-PeriodNsecSet") {
+    field(DESC, "Period in Nanoseconds")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-PeriodNsecSet")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-DutyCycleSet") {
+    field(DESC, "Duty Cycle percentage")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-DutyCycleSet")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-Set") {
+    field(DESC, "Set FTE")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-Set")
+	field(ZNAM,"OFF")
+    field(ONAM,"ON")    
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-SetCode") {
+    field(DESC, "success-error setting FTE configuration")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-SetCode")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-SetStatus") {
+    field(DESC, "Report on FTE configuration")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM, "255")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-SetStatus")
+}
+
+#Supressing FTE 
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-TerminalSuppress") {
+    field(DESC, "Terminal to suppress FTE")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-TerminalSuppress")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-StartTimeSuppress") {
+    field(DESC, "Start Time on FTE suppression")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(SCAN, "Passive")
+    field(NELM, "2")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-StartTimeSuppress")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-ModeSuppress") {
+    field(DESC, "Mode of suppress FTE/clock")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-ModeSuppress")
+    field(ZNAM, "FTE")
+    field(ONAM, "CLK")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-AllSuppress") {
+    field(DESC, "Suppress one or Suppress all FTEs")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-AllSuppress")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-Suppress") {
+    field(DESC, "Suppress")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-Suppress")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-SuppressCode") {
+    field(DESC, "success-error on FTE suppression")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-SuppressCode")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-SuppressStatus") {
+    field(DESC, "Report on FTE suppression")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(SCAN, "I/O Intr")
+    field(NELM, "255")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-SuppressStatus")
+}
+
+
+
+
+#Change period of scheduled clock generation
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-TerminalChgPeriod") {
+    field(DESC, "Terminal to change the period of FTE")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-TerminalChgPeriod")
+    
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-PeriodChgPeriod") {
+    field(DESC, "Period in nanoseconds to change on FTE")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-PeriodChgPeriod")
+}
+
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-ChgPeriod") {
+    field(DESC, "ChgPeriod")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-ChgPeriod")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-ChgPeriodCode") {
+    field(DESC, "success-error changing clock period")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-ChgPeriodCode")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-ChgPeriodStatus") {
+    field(DESC, "Report on FTE clock period change")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM, "255")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-ChgPeriodStatus")
+}
+
+
+#Status of pending FTEs
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-TerminalPending") {
+    field(DESC, "Terminal Pending")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-TerminalPending")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-PendingValue") {
+    field(DESC, "Pending FTEs in the terminal")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-PendingValue")
+}
+
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-PendingCode") {
+    field(DESC, "success-error on getting pending FTEs")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-PendingCode")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-PendingStatus") {
+    field(DESC, "Report on getting pending FTEs")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM, "255")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-PendingStatus")
+}
+
+#Maximun number of FTEs that can be scheduled
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(FTE_NAME)-Maximum") {
+    field(DESC, "Maximum FTEs")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(FTE_NAME)-Maximum")
+}
+

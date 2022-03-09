@@ -1,0 +1,24 @@
+/**
+
+@mainpage
+
+
+The <b>NDS-EPICS Device Support</b> on top of NDS-Core library v3 generalizes the implementation of an EPICS device driver for DAQ, Image, and Timing devices. \n
+
+The NDS-EPICS Device Support is implemented using asynDriver module. It provides the user with the entire software infrastructure needed for an EPICS Database to communicate with an NDS-Device Driver. It handles the details of registering the port driver, registering the supported interfaces, and registering the required interrupt sources. The NDS-EPICS user can focus on the EPICS IOC configuration and NDS Device Driver development using NDS-Core. \n 
+
+The schema of the different software layers involved in the NDS approach is depicted in Figure 1.
+
+\htmlonly <style>div.image img[src="nds-epics.svg"]{width:10px;}</style> \endhtmlonly
+@image html nds-epics.svg Figure 1
+@image latex nds-epics.png Main software elements of an NDS Device Driver inside an EPICS context 
+
+NDS-EPICS CONCEPT
+=================
+The NDS-EPICS Device Support has been implemented to provide two primary functionalities:
+- From the EPICS point of view, this module provides a Device Support module implemented with the asynDriver. This module can interact with any device driver implemented with NDS methodology using the NDS-Core software.
+- From NDS device driver methodology, this module provides two functions; it implements the software infrastructure (factory) needed by NDS-Core and the interface that communicates EPICS with the NDS device drivers.
+
+
+
+*/

@@ -1,0 +1,31 @@
+file "nds3_DigitalIO.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    DIGITALIO_NAME,
+    DEVTYPE,
+    DATATYPE,
+    NELM,
+    BUSWIDTH
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "DigitalIOI32Node-",
+    "STM"
+    "DigitalIOI32Node",
+    "asynInt32Array",
+    "LONG",
+    "128",
+    "32"
+}
+
+}

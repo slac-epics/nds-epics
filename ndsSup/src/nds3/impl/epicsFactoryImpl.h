@@ -53,6 +53,8 @@ public:
 
     static void epicsInitHookFunction(initHookState state);
 
+    virtual void registerDBParser(dbParser_t dbParserFunc);
+
     virtual InterfaceBaseImpl* getNewInterface(const std::string& fullName);
 
     virtual void run(int argc,char *argv[]);
@@ -115,16 +117,17 @@ private:
 */
     struct nodeCommand_t
     {
-        nodeCommand_t() {}
+        nodeCommand_t(){};
         std::string m_commandName;
         std::string m_usage;
-        size_t m_argumentsNumber;
+        size_t m_argumentsNumber=0;
         std::map<std::string, command_t> m_delegates;
     };
     typedef std::map<std::string, nodeCommand_t> nodeCommands_t;
     nodeCommands_t m_nodeCommands;
 
     std::list<std::string> m_processAtInit;
+    std::vector<dbParser_t> m_vDbParser;
 };
 
 class EpicsLogStreamBufferImpl: public std::stringbuf

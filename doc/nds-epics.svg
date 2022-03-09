@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generado por Microsoft Visio, SVG Export nds-epics.svg Página-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="12.889in" height="4.6716in"
+		viewBox="0 0 928.01 336.355" xml:space="preserve" color-interpolation-filters="sRGB" class="st12">
+	<v:documentProperties v:langID="3082" v:metric="true" v:viewMarkup="false"/>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {visibility:visible}
+		.st2 {fill:#5b9bd5;fill-opacity:0.22;filter:url(#filter_2);stroke:#5b9bd5;stroke-opacity:0.22}
+		.st3 {fill:#5b9bd5;stroke:#c7c8c8;stroke-width:0.25}
+		.st4 {fill:#c9c9c9;stroke:#c7c8c8;stroke-width:0.25}
+		.st5 {fill:#feffff;font-family:Calibri;font-size:1.99999em}
+		.st6 {fill:#ed7d31;stroke:#c7c8c8;stroke-width:0.25}
+		.st7 {font-size:1em}
+		.st8 {fill:none;stroke:none;stroke-width:0.25}
+		.st9 {fill:#5b9bd5;font-family:Calibri;font-size:3em}
+		.st10 {marker-end:url(#mrkr13-57);marker-start:url(#mrkr13-55);stroke:#ffc000;stroke-linecap:round;stroke-linejoin:round;stroke-width:3}
+		.st11 {fill:#ffc000;fill-opacity:1;stroke:#ffc000;stroke-opacity:1;stroke-width:0.54347826086957}
+		.st12 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend13">
+			<path d="M 3 1 L 0 0 L 3 -1 L 3 1 " style="stroke:none"/>
+		</g>
+		<marker id="mrkr13-55" class="st11" v:arrowType="13" v:arrowSize="2" v:setback="5.4" refX="5.4" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(1.84) "/>
+		</marker>
+		<marker id="mrkr13-57" class="st11" v:arrowType="13" v:arrowSize="2" v:setback="5.52" refX="-5.52" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(-1.84,-1.84) "/>
+		</marker>
+	</defs>
+	<defs id="Filters">
+		<filter id="filter_2">
+			<feGaussianBlur stdDeviation="2"/>
+		</filter>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Página-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="shape1-1" v:mID="1" v:groupContext="shape" transform="translate(3.0294,-5.3478)">
+			<title>Rectángulo</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<g id="shadow1-2" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="50.7643" width="921.26" height="285.591" class="st2"/>
+			</g>
+			<rect x="0" y="50.7643" width="921.26" height="285.591" class="st3"/>
+		</g>
+		<g id="shape2-6" v:mID="2" v:groupContext="shape" transform="translate(759.348,-31.3911)">
+			<title>Rectángulo.15</title>
+			<desc>NDS-core</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197" v:verticalAlign="0"/>
+			<v:textRect cx="61.5207" cy="271.245" width="123.05" height="130.219"/>
+			<g id="shadow2-7" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="206.136" width="123.041" height="130.219" class="st2"/>
+			</g>
+			<rect x="0" y="206.136" width="123.041" height="130.219" class="st4"/>
+			<text x="15.65" y="231.74" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>NDS-core  </text>		</g>
+		<g id="shape3-12" v:mID="3" v:groupContext="shape" transform="translate(477.624,-31.3911)">
+			<title>Rectángulo.13</title>
+			<desc>NDS-EPICS</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197" v:verticalAlign="0"/>
+			<v:textRect cx="61.5207" cy="271.245" width="123.05" height="130.219"/>
+			<g id="shadow3-13" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="206.136" width="123.041" height="130.219" class="st2"/>
+			</g>
+			<rect x="0" y="206.136" width="123.041" height="130.219" class="st4"/>
+			<text x="10.21" y="231.74" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>NDS-EPICS  </text>		</g>
+		<g id="shape4-18" v:mID="4" v:groupContext="shape" transform="translate(95.3749,-31.3911)">
+			<title>Rectángulo.2</title>
+			<desc>ASYN EPICS Record Device Support</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="75.8956" cy="293.835" width="151.8" height="85.0394"/>
+			<g id="shadow4-19" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="251.315" width="151.791" height="85.0394" class="st2"/>
+			</g>
+			<rect x="0" y="251.315" width="151.791" height="85.0394" class="st6"/>
+			<text x="20.14" y="272.24" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>ASYN EPICS <tspan
+						x="6.23" dy="1.2em" class="st7">Record Device </tspan><tspan x="36.94" dy="1.2em" class="st7">Support</tspan></text>		</g>
+		<g id="shape5-26" v:mID="5" v:groupContext="shape" transform="translate(3.375,-294.482)">
+			<title>Rectángulo.3</title>
+			<desc>EPICS IOC</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="89.0256" cy="316.081" width="178.06" height="40.5469"/>
+			<rect x="0" y="295.808" width="178.051" height="40.5469" class="st8"/>
+			<text x="18.41" y="326.88" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>EPICS IOC</text>		</g>
+		<g id="shape6-29" v:mID="6" v:groupContext="shape" transform="translate(17.2026,-187.297)">
+			<title>Rectángulo.5</title>
+			<desc>Channel Access</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="52.197" cy="293.835" width="104.4" height="85.0394"/>
+			<g id="shadow6-30" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="251.315" width="104.394" height="85.0394" class="st2"/>
+			</g>
+			<rect x="0" y="251.315" width="104.394" height="85.0394" class="st6"/>
+			<text x="12.41" y="286.64" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Channel <tspan
+						x="19.75" dy="1.2em" class="st7">Access</tspan></text>		</g>
+		<g id="shape7-36" v:mID="7" v:groupContext="shape" transform="translate(17.2026,-115.545)">
+			<title>Rectángulo.6</title>
+			<desc>Other EPICS software components</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="114.982" cy="293.835" width="229.97" height="85.0394"/>
+			<g id="shadow7-37" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="251.315" width="229.963" height="85.0394" class="st2"/>
+			</g>
+			<rect x="0" y="251.315" width="229.963" height="85.0394" class="st4"/>
+			<text x="10.95" y="286.64" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Other EPICS software <tspan
+						x="54.07" dy="1.2em" class="st7">components</tspan></text>		</g>
+		<g id="shape8-43" v:mID="8" v:groupContext="shape" transform="translate(307.318,-31.3911)">
+			<title>Rectángulo.7</title>
+			<desc>ASYN</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="52.197" cy="293.835" width="104.4" height="85.0394"/>
+			<g id="shadow8-44" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="251.315" width="104.394" height="85.0394" class="st2"/>
+			</g>
+			<rect x="0" y="251.315" width="104.394" height="85.0394" class="st6"/>
+			<text x="26.15" y="301.04" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>ASYN</text>		</g>
+		<g id="shape9-49" v:mID="9" v:groupContext="shape" transform="translate(247.166,-73.9108)">
+			<title>Hoja.9</title>
+			<path d="M16.2 336.35 L16.56 336.35 L43.59 336.35" class="st10"/>
+		</g>
+		<g id="shape10-58" v:mID="10" v:groupContext="shape" transform="translate(411.712,-73.9108)">
+			<title>Hoja.10</title>
+			<path d="M16.2 336.35 L16.56 336.35 L49.35 336.35" class="st10"/>
+		</g>
+		<g id="shape11-65" v:mID="11" v:groupContext="shape" transform="translate(477.624,-31.3911)">
+			<title>Rectángulo.10</title>
+			<desc>Device Support</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="61.5207" cy="293.835" width="123.05" height="85.0394"/>
+			<g id="shadow11-66" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="251.315" width="123.041" height="85.0394" class="st2"/>
+			</g>
+			<rect x="0" y="251.315" width="123.041" height="85.0394" class="st6"/>
+			<text x="28.95" y="286.64" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Device <tspan
+						x="22.56" dy="1.2em" class="st7">Support</tspan></text>		</g>
+		<g id="shape12-72" v:mID="12" v:groupContext="shape" transform="translate(759.348,-31.3911)">
+			<title>Rectángulo.11</title>
+			<desc>Device Driver</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="61.5207" cy="293.835" width="123.05" height="85.0394"/>
+			<g id="shadow12-73" v:groupContext="shadow" v:shadowOffsetX="0.345598" v:shadowOffsetY="-1.97279" v:shadowType="1"
+					transform="matrix(1,0,0,1,0.345598,1.97279)" class="st1">
+				<rect x="0" y="251.315" width="123.041" height="85.0394" class="st2"/>
+			</g>
+			<rect x="0" y="251.315" width="123.041" height="85.0394" class="st6"/>
+			<text x="28.95" y="286.64" class="st5" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Device <tspan
+						x="31.63" dy="1.2em" class="st7">Driver</tspan></text>		</g>
+		<g id="shape13-79" v:mID="13" v:groupContext="shape" transform="translate(600.665,-73.9108)">
+			<title>Hoja.13</title>
+			<path d="M16.2 336.35 L16.56 336.35 L142.12 336.35" class="st10"/>
+		</g>
+	</g>
+</svg>

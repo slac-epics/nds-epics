@@ -1,0 +1,19 @@
+file "nds3_DevicePV.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    DEVICEPV_NAME,
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "DevicePVs",
+}
+
+}

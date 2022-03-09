@@ -1,0 +1,220 @@
+# Timing node
+file "nds3_Timing.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    TIMING_NAME,
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "TR0-TM-",
+    "StateMachine"
+    "TR0-TM",
+}
+
+}
+
+# Timestamping node
+file "nds3_Timestamping.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    TIMESTAMPING_NAME,
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "TR0-TS-",
+    "StateMachine"
+    "TR0-TS",
+}
+
+}
+
+# Data acquisition node Channel 0
+file "nds3_DataAcquisition.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    DATAACQUISITION_NAME,
+    DATATYPE,
+    NELM
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "CH0-DAQ-",
+    "STM"
+    "CH0-DAQ",
+    "asynFloat64Array",
+    "128"
+}
+}
+
+# Data acquisition node Channel 1
+file "nds3_DataAcquisition.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    DATAACQUISITION_NAME,
+    DATATYPE,
+    NELM
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "CH1-DAQ-",
+    "STM"
+    "CH1-DAQ",
+    "asynFloat64Array",
+    "128"
+}
+
+}
+
+# Firmware node 
+file "nds3_Firmware.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    FIRMWARE_NAME,
+}
+
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "Firmware-",
+    "StateMachine"
+    "Firmware",
+}
+
+}
+
+# Amplitude PV Channel 0
+file "db/exampleDrv.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+  DEVICEPV_NAME
+}
+
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+  "CH0-Amplitude"
+}
+
+}
+
+
+# Frequency PV Channel 0
+file "db/exampleDrv.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+  DEVICEPV_NAME
+}
+
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "CH0-Frequency"
+}
+
+}
+
+
+# Amplitude PV Channel 1
+file "exampleDrv.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+  DEVICEPV_NAME
+}
+
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "CH1-Amplitude"
+}
+
+}
+
+
+# Frequency PV Channel 1
+file "exampleDrv.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+  DEVICEPV_NAME
+}
+
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "CH1-Frequency"
+}
+
+}
+
+

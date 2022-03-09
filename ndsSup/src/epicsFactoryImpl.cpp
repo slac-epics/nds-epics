@@ -10,8 +10,6 @@
 #include <iostream>
 #include <fstream>
 #include <link.h>
-#include <elf.h>
-#include <dlfcn.h>
 #include <set>
 #include <string>
 #include <sstream>
@@ -32,12 +30,12 @@
 // Include embedded dbd file
 //#include "../dbd/dbdfile.h"
 
-typedef void (*reg_func)(void);
-epicsShareExtern reg_func pvar_func_arrInitialize, pvar_func_asSub,
-    pvar_func_asynInterposeEosRegister,
-    pvar_func_asynInterposeFlushRegister, pvar_func_asynRegister,
-    pvar_func_dbndInitialize, pvar_func_ndsRegister,
-    pvar_func_syncInitialize, pvar_func_tsInitialize;
+//typedef void (*reg_func)(void);
+//epicsShareExtern reg_func pvar_func_arrInitialize, pvar_func_asSub,
+//    pvar_func_asynInterposeEosRegister,
+//    pvar_func_asynInterposeFlushRegister, pvar_func_asynRegister,
+//    pvar_func_dbndInitialize, pvar_func_ndsRegister,
+//    pvar_func_syncInitialize, pvar_func_tsInitialize;
 
 namespace nds
 {
@@ -83,7 +81,7 @@ void EpicsFactoryImpl::createNdsDevice(const iocshArgBuf * arguments)
 
         m_pFactory->createDevice(arguments[0].sval, parameter, namedParameters);
     }
-    catch(const std::runtime_error& e)
+    catch(const std::exception& e)
     {
         std::ostringstream errorString;
         errorString << e.what() << std::endl;
@@ -122,6 +120,8 @@ void EpicsFactoryImpl::loadNdsNamingRules(const iocshArgBuf * arguments)
         }
 
         std::ifstream iniFile(arguments[0].sval);
+        if ((iniFile.rdstate() & std::istream::failbit) != 0)
+            throw std::runtime_error("Invalid INI file");
         m_pFactory->loadNamingRules(iniFile);
     }
     catch(const std::runtime_error& e)
@@ -227,7 +227,7 @@ void EpicsFactoryImpl::ndsUserCommand(const iocshArgBuf * arguments)
 }
 
 
-EpicsFactoryImpl::EpicsFactoryImpl(): m_separator("-"), m_emptyString()
+EpicsFactoryImpl::EpicsFactoryImpl(): m_separator("-"), m_emptyString(),m_vDbParser(0)
 {
     m_pFactory = this;
 
@@ -282,22 +282,34 @@ EpicsFactoryImpl::EpicsFactoryImpl(): m_separator("-"), m_emptyString()
 
 }
 
-void EpicsFactoryImpl::epicsInitHookFunction(initHookState state)
+void EpicsFactoryImpl::registerDBParser(dbParser_t dbParserFunc){
+    m_vDbParser.push_back(dbParserFunc);
+}
+
+
+void EpicsFactoryImpl::epicsInitHookFunction(initHookState  state)
 {
-    if(state == initHookAfterIocRunning)
-    {
-        // Process all records with PINI
-        for(std::list<std::string>::const_iterator scanPVs(m_pFactory->m_processAtInit.begin()), endPVs(m_pFactory->m_processAtInit.end());
-            scanPVs != endPVs;
-            ++scanPVs)
-        {
-            std::string command("dbpf ");
-            command += *scanPVs;
-            command += ".PROC 1";
-            iocshCmd(command.c_str());
+
+    if(state == initHookAfterIocRunning){
+        for (size_t i =0; i<m_pFactory->m_vDbParser.size();i++)
+        if(m_pFactory->m_vDbParser.at(i)!= NULL){
+            m_pFactory->m_vDbParser.at(i)();
         }
-        m_pFactory->m_processAtInit.clear();
     }
+    /// This functionality is not used in ITER NDS v3 extension project
+//    {
+//        // Process all records with PINI
+//        for(std::list<std::string>::const_iterator scanPVs(m_pFactory->m_processAtInit.begin()), endPVs(m_pFactory->m_processAtInit.end());
+//            scanPVs != endPVs;
+//            ++scanPVs)
+//        {
+//            std::string command("dbpf ");
+//            command += *scanPVs;
+//            command += ".PROC 1";
+//            iocshCmd(command.c_str());
+//        }
+//        m_pFactory->m_processAtInit.clear();
+//    }
 }
 
 InterfaceBaseImpl* EpicsFactoryImpl::getNewInterface(const std::string& fullName)
@@ -308,7 +320,8 @@ InterfaceBaseImpl* EpicsFactoryImpl::getNewInterface(const std::string& fullName
 
 void EpicsFactoryImpl::run(int argc,char * argv[])
 {
-    iocshRegisterCommon();
+/*  //TODO: Not necessary, done in st.cmd
+    //iocshRegisterCommon(); //TODO: Study if necessary. Seems not as it is done in registerRecordDeviceDriver.pl
 
     if(argc == 0)
     {
@@ -335,15 +348,19 @@ void EpicsFactoryImpl::run(int argc,char * argv[])
     outputStream.write(dbdfile, sizeof(dbdfile));
 #else
     std::string tmpFileName(dbdFileName);
-    tmpFileName += "epicsNdsControlSystem.dbd";
+    //tmpFileName += "epicsNdsControlSystem.dbd";
+    tmpFileName += "ndsIoc.dbd"; //Name changed during ITER integration
+
 #endif
 
     std::string command("dbLoadDatabase ");
     command += tmpFileName;
-    iocshCmd(command.c_str());
+    //printf("\nEpicsFactoryImpl::run calls iocshCmd=%s\n",command.c_str());
+    //iocshCmd(command.c_str());
 
-    iocshCmd("epicsNdsControlSystem_registerRecordDeviceDriver pdbbase");
-
+    //iocshCmd("epicsNdsControlSystem_registerRecordDeviceDriver pdbbase");
+    //iocshCmd("ndsIoc_registerRecordDeviceDriver pdbbase"); //Name changed during ITER integration
+*/
     if(argc>=2) {
         iocsh(argv[1]);
         epicsThreadSleep(.2);

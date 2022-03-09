@@ -1,0 +1,23 @@
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataScheduling-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATASCHEDULING_REASON)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataScheduling-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATASCHEDULING_REASON)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataScheduling-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATASCHEDULING_REASON)-StateMachine-setState")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATASCHEDULING_NAME)-Trigger") {
+    field(DESC, "Trigger the node")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATASCHEDULING_REASON)-Trigger")
+}

@@ -1,0 +1,17 @@
+#   - (TYPE, FTVL) pair of supported values:
+#       -   (Int8, CHAR) for <std::vector<std::int8_t>
+#       -   (Int8, UCHAR) for <std::vector<std::uint8_t>
+#       -   (Int16, SHORT) for <std::vector<std::int16_t>
+#       -   (Int32, LONG) for <std::vector<std::int32_t>
+#       -   (Int64, INT64) for <std::vector<std::int64_t>
+#       -   (Float32, FLOAT) for <std::vector<std::float>
+#       -   (Float64, DOUBLE) for <std::vector<std::double>
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATASCHEDULING_NAME)-DataOut_$(INDEX)") {
+    field(DESC, "MIMO-Output $(INDEX)")
+    field(DTYP, "asyn$(TYPE)ArrayIn")
+    field(FTVL, "$(FTVL)")
+    field(NELM, $(NELM))
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATASCHEDULING_REASON)-DataOut_$(INDEX)")
+}

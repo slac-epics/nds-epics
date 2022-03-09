@@ -1,0 +1,18 @@
+file "nds3_DeviceError.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    DEVICE_NAME
+}
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "DeviceError"
+}
+
+}

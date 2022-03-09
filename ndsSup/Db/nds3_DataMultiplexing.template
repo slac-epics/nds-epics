@@ -1,0 +1,18 @@
+# Load PVs of its parent node
+
+include "nds3_DataScheduling.template"
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATASCHEDULING_NAME)-SamplesPerChannel") {
+    field(DESC, "Set samples per channel")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATASCHEDULING_REASON)-SamplesPerChannel")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATASCHEDULING_NAME)-SamplesPerChannel_RBV") {
+    field(DESC, "Current Samples per channel")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATASCHEDULING_REASON)-SamplesPerChannel_RBV")
+}

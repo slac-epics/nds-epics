@@ -1,0 +1,28 @@
+file "nds3_DataGeneration.template" {
+
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    DATAGENERATION_NAME,
+    DATATYPE,
+    NELM
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "DataGenerationNode-",
+    "STM"
+    "DataGenerationNode",
+    "asynFloat64ArrayIn",
+    "128"
+}
+
+}

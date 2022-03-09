@@ -1,0 +1,7 @@
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)") {
+    field(DESC, "")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DEVICEPV_NAME)")
+}
+

@@ -17,10 +17,10 @@ demo_DBD += base.dbd
 
 # Include dbd files from all support applications:
 demo_DBD += asyn.dbd
-demo_DBD += nds3epics.dbd
+demo_DBD += nds3-epics.dbd
 
 # Add all the support libraries needed by this IOC
-demo_LIBS += nds3epics nds3 asyn
+demo_LIBS += nds3-epics nds3 asyn
 
 nds3_DIR = $(NDS3)
 

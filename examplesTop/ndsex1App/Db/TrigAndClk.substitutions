@@ -1,0 +1,47 @@
+file "nds3_TrigAndClk.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    TRIGANDCLK_NAME
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "TrigAndClk-",
+    "StateMachine", 
+    "TrigAndClk"
+}
+
+}
+
+file "nds3_Routing.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    ROUTING_NAME
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "TrigAndClk-Route-",
+    "STM",
+    "TrigAndClk-Route"
+}
+
+}

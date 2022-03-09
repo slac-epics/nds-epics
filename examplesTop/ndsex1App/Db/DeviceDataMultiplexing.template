@@ -1,0 +1,46 @@
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-FloatArray_Source_0") {
+    field(DESC, "FloatArray in channel 0")
+    field(DTYP, "asynFloat32ArrayIn")
+    field(FTVL, "FLOAT")
+    field(NELM, $(NELM))
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)FloatArray_Source_0")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-FloatArray_Source_1") {
+    field(DESC, "FloatArray in channel 1")
+    field(DTYP, "asynFloat32ArrayIn")
+    field(FTVL, "FLOAT")
+    field(NELM, $(NELM))
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)FloatArray_Source_1")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-FloatArray_Source_2") {
+    field(DESC, "FloatArray in channel 2")
+    field(DTYP, "asynFloat32ArrayIn")
+    field(FTVL, "FLOAT")
+    field(NELM, $(NELM))
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)FloatArray_Source_2")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-FloatArray_Source_3") {
+    field(DESC, "FloatArray in channel 3")
+    field(DTYP, "asynFloat32ArrayIn")
+    field(FTVL, "FLOAT")
+    field(NELM, $(NELM))
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)FloatArray_Source_3")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-IncreaseSources") {
+    field(DESC, "Set 1 to increase sources")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)IncreaseSources")
+}

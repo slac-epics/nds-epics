@@ -1,0 +1,356 @@
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="TrigAndClk-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="TrigAndClk-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="TrigAndClk-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-StateMachine-setState")
+}
+
+# Rest of PVs
+
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-HWBlock") {
+    field(DESC, "HW block  AI, DI, AO, DO")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-HWBlock")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-HWBlock_RBV") {
+    field(DESC, "HW block  AI, DI, AO, DO RBV")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-HWBlock_RBV")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-SetSW") {
+    field(DESC, "Immediate trigger by SOFTWARE.")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-SetSW")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-DAQStartTimeDelay") {
+    field(DESC, "Time delay DAQ after trigger.")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-DAQStartTimeDelay")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-DAQStartTimeDelay_RBV") {
+    field(DESC, "Time delay DAQ after trigger ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-DAQStartTimeDelay_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-TrigPeriod") {
+    field(DESC, "Trigger Period")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-TrigPeriod")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-TrigPeriod_RBV") {
+    field(DESC, "Trigger Period ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-TrigPeriod_RBV")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Level") {
+    field(DESC, "Level configuration for trigger")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Level")
+    field(ZNAM, "LOW")
+    field(ONAM, "HIGH")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Level_RBV") {
+    field(DESC, "Level configuration for trigger ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Level_RBV")
+    field(ZNAM, "LOW")
+    field(ONAM, "HIGH")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Edge") {
+    field(DESC, "Detection edge for trigger")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Edge")
+    field(ZNAM, "FALLING")
+    field(ONAM, "RISING")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Edge_RBV") {
+    field(DESC, "Detection edge for trigger ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Edge_RBV")
+    field(ZNAM, "FALLING")
+    field(ONAM, "RISING")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Change") {
+    field(DESC, "Select LEVEL or EDGE trigger")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Change")
+    field(ZNAM, "LEVEL")
+    field(ONAM, "EDGE")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Change_RBV") {
+    field(DESC, "Select LEVEL or EDGE trigger ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Change_RBV")
+    field(ZNAM, "LEVEL")
+    field(ONAM, "EDGE")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Mode") {
+    field(DESC, "Trigger operation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Mode")
+    field(ZRVL, 0)
+    field(ZRST, "FINITE")
+    field(ONVL, 1)
+    field(ONST, "FINITE-RETRIGGER")
+    field(TWVL, 2)
+    field(TWST, "CONTINIOUS")
+    field(THVL, 3)
+    field(THST, "REF-RETRIGGER")
+    field(FRVL, 4)
+    field(FRST, "PERIODIC-RETRIGGER")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-Mode_RBV") {
+    field(DESC, "Trigger operation ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-Mode_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "FINITE")
+    field(ONVL, 1)
+    field(ONST, "FINITE-RETRIGGER")
+    field(TWVL, 2)
+    field(TWST, "CONTINIOUS")
+    field(THVL, 3)
+    field(THST, "REF-RETRIGGER")
+    field(FRVL, 4)
+    field(FRST, "PERIODIC-RETRIGGER")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-ClkDivider") {
+    field(DESC, "The divider value for the trigger clock.")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-ClkDivider")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-ClkDivider_RBV") {
+    field(DESC, "The divider value for the trigger clock ReadBack.")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-ClkDivider_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PreTrigSamples") {
+    field(DESC, "Num of samples BEFORE trigger")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PreTrigSamples")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PreTrigSamples_RBV") {
+    field(DESC, "Num of samples BEFORE trigger ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PreTrigSamples_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PostTrigSamples") {
+    field(DESC, "Number of samples AFTER trigger")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PostTrigSamples")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PostTrigSamples_RBV") {
+    field(DESC, "Number of samples AFTER trigger ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PostTrigSamples_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-LoadTrigConf") {
+    field(DESC, "Write  configuration to hardware block")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-LoadTrigConf")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-ResetTrigConf") {
+    field(DESC, "Reset the hardware block configuration")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-ResetTrigConf")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-TrigLoadStatus") {
+    field(DESC, "LoadTrigConf status message.")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM, "255")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-TrigLoadStatus")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-TrigLoadCode") {
+    field(DESC, "LoadTrigConf error code.")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-TrigLoadCode")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-SyncMode") {
+    field(DESC, "PLL sync MASTER or SLAVE")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-SyncMode")
+	field(ZRVL, 0)
+    field(ZRST, "DEFAULT")
+    field(ONVL, 1)
+    field(ONST, "MASTER")
+    field(TWVL, 2)
+    field(TWST, "SLAVE")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-SyncMode_RBV") {
+    field(DESC, "PLL sync MASTER or SLAVE ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-SyncMode_RBV")
+	field(ZRVL, 0)
+    field(ZRST, "DEFAULT")
+    field(ONVL, 1)
+    field(ONST, "MASTER")
+    field(TWVL, 2)
+    field(TWST, "SLAVE")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLSyncSET") {
+    field(DESC, "Write PLL configuration to hardware")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLSyncSET")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefFreq") {
+    field(DESC, "PLL Reference Frequency")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefFreq")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefFreq_RBV") {
+    field(DESC, "PLL Reference Frequency. ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefFreq_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefDiv") {
+    field(DESC, "PLL Reference Divisor")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefDiv")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefDiv_RBV") {
+    field(DESC, "PLL Reference Divisor. ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefDiv_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefMult") {
+    field(DESC, "PLL Reference Multiplier")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefMult")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefMult_RBV") {
+    field(DESC, "PLL Reference Multiplier. ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefMult_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefDivALL") {
+    field(DESC, "PLL Reference Divisor")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefDivALL")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLRefDivALL_RBV") {
+    field(DESC, "PLL Reference Divisor. ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLRefDivALL_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLLoadStatus") {
+    field(DESC, "PLL Load status message.")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM, "255")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLLoadStatus")
+}
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-PLLLoadCode") {
+    field(DESC, "PLL Load error code.")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-PLLLoadCode")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-EnableDisablePLL") {
+    field(DESC, "Enable or disable PLL")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-EnableDisablePLL")
+    field(ZNAM, "DISABLE")
+    field(ONAM, "ENABLE")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TRIGANDCLK_NAME)-EnableDisablePLL_RBV") {
+    field(DESC, "Enable or disable PLL Readback")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TRIGANDCLK_NAME)-EnableDisablePLL_RBV")
+    field(ZNAM, "DISABLE")
+    field(ONAM, "ENABLE")
+}

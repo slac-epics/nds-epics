@@ -1,0 +1,27 @@
+file "nds3_WaveForm.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    WAVEFORM_NAME,
+    DATATYPE,
+    NELM
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "WFGNode-",
+    "STM"
+    "WFGNode",
+    "asynFloat64Array",
+    "128"
+}
+
+}

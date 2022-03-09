@@ -1,0 +1,326 @@
+#Waveform generation template for NDS
+
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="WFGNode-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="WFGNode-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="WFGNode-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-StateMachine-setState")
+}
+
+# Rest of PVs
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Data") {
+    field(DESC, "Waveform Generated")
+    field(DTYP, "$(DATATYPE)In")
+    field(FTVL, "DOUBLE")
+    field(NELM, "$(NELM)")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Data")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-DataAWG") {
+    field(DESC, "AWG Samples for signal generation")
+    field(DTYP, "$(DATATYPE)Out")
+    field(FTVL, "DOUBLE")
+    field(NELM, "$(NELM)")
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-DataAWG")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Decimation") {
+    field(DESC, "Decimation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Decimation")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Frequency") {
+    field(DESC, "Generation frequency")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Frequency")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Frequency_RBV") {
+    field(DESC, "Generation frequency ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Frequency_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-RefFrequency") {
+    field(DESC, "Reference frequency")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-RefFrequency")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-RefFrequency_RBV") {
+    field(DESC, "Reference frequency")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-RefFrequency_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Amplitude") {
+    field(DESC, "Amplitude")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Amplitude")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Amplitude_RBV") {
+    field(DESC, "Amplitude ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Amplitude_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Phase") {
+    field(DESC, "Phase")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Phase")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Phase_RBV") {
+    field(DESC, "Phase ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Phase_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-UpdateRate") {
+    field(DESC, "Update Rate")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-UpdateRate")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-UpdateRate_RBV") {
+    field(DESC, "Update Rate ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-UpdateRate_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-DutyCycle") {
+    field(DESC, "Signal Duty Cycle")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-DutyCycle")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-DutyCycle_RBV") {
+    field(DESC, "Signal Duty Cycle ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-DutyCycle_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Gain") {
+    field(DESC, "Gain of the Channel")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Gain")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Gain_RBV") {
+    field(DESC, "Gain of the Channel ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Gain_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-BandWidth") {
+    field(DESC, "BandWidth")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-BandWidth")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-BandWidth_RBV") {
+    field(DESC, "BandWidth ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-BandWidth_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Resolution") {
+    field(DESC, "Bits per Sample")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Resolution")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Resolution_RBV") {
+    field(DESC, "Bits per Sample ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Resolution_RBV")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Impedance") {
+    field(DESC, "Impedance: 50 ohm or Inf ")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Impedance")
+    field(ZRVL, 0)
+    field(ZRST, "50ohm")
+    field(ONVL, 1)
+    field(ONST, "Inf")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Impedance_RBV") {
+    field(DESC, "Impedance ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Impedance_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "50ohm")
+    field(ONVL, 1)
+    field(ONST, "Inf")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Coupling") {
+    field(DESC, "Coupling: AC or DC")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Coupling")
+    field(ZRVL, 0)
+    field(ZRST, "AC")
+    field(ONVL, 1)
+    field(ONST, "DC")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Coupling_RBV") {
+    field(DESC, "Coupling: AC or DC ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Coupling_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "AC")
+    field(ONVL, 1)
+    field(ONST, "DC")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-SignalRefType") {
+    field(DESC, "Type:Differential or SingleEnded")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-SignalRefType")
+    field(ZRVL, 0)
+    field(ZRST, "SingleEnded")
+    field(ONVL, 1)
+    field(ONST, "Differential")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-SignalRefType_RBV") {
+    field(DESC, "Type:Differential or SingleEnded RBV")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-SignalRefType_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "SingleEnded")
+    field(ONVL, 1)
+    field(ONST, "Differential")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-SignalType") {
+    field(DESC, "Signal type generated")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-SignalType")
+    field(ZRVL, 0)
+    field(ZRST, "WaveForm")
+    field(ONVL, 1)
+    field(ONST, "Spline")
+    field(TWVL, 2)
+    field(TWST, "DC")
+    field(THVL, 3)
+    field(THST, "Sin")
+    field(FRVL, 4)
+    field(FRST, "Square")
+    field(FVVL, 5)
+    field(FVST, "Triangle")
+    field(SXVL, 6)
+    field(SXST, "Pulse")
+    field(SVVL, 7)
+    field(SVST, "Sawtooth")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-SignalType_RBV") {
+    field(DESC, "Signal type generated ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-SignalType_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "WaveForm")
+    field(ONVL, 1)
+    field(ONST, "Spline")
+    field(TWVL, 2)
+    field(TWST, "DC")
+    field(THVL, 3)
+    field(THST, "Sin")
+    field(FRVL, 4)
+    field(FRST, "Square")
+    field(FVVL, 5)
+    field(FVST, "Triangle")
+    field(SXVL, 6)
+    field(SXST, "Pulse")
+    field(SVVL, 7)
+    field(SVST, "Sawtooth")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Ground") {
+    field(DESC, "Ground State")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Ground")
+    field(ZRVL, 0)
+    field(ZRST, "On")
+    field(ONVL, 1)
+    field(ONST, "Off")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Ground_RBV") {
+    field(DESC, "Ground State ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Ground_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "On")
+    field(ONVL, 1)
+    field(ONST, "Off")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-NoB") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-NumberOfPushedDataBlocks")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Offset") {
+    field(DESC, "Offset")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Offset")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(WAVEFORM_NAME)-Offset_RBV") {
+    field(DESC, "Offset ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(WAVEFORM_NAME)-Offset_RBV")
+}

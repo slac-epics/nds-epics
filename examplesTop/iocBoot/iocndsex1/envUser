@@ -1,0 +1,7 @@
+############################################################################
+## User provided environment variables
+############################################################################
+
+epicsEnvSet("EXAMPLE_LIB_PATH", "/opt/codac/lib")
+epicsEnvSet("EPICS_DB_INCLUDE_PATH",".:$(TOP)/db:$(EPICS_ROOT)/db")
+#- End-of-file marker - do not delete or add lines below!

@@ -1,0 +1,19 @@
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICE_NAME)-delegateOutError") {
+    field(DESC, "delegateOutError to be set")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)delegateOutError")
+}
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICE_NAME)-delegateInError") {
+    field(DESC, "delegateInError read")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)delegateInError")
+}
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICE_NAME)-variableOutError") {
+    field(DESC, "variableOutError to be set")
+    field(DTYP, "asynInt32")
+    field(FLNK, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICE_NAME)-delegateInError")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)variableOutError")
+}

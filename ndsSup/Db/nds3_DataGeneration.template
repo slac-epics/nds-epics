@@ -1,0 +1,388 @@
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+#include "nds3_StateMachine.template"
+
+#record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataGenerationNode-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+#    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-StateMachine-getGlobalState")
+#}
+
+#record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataGenerationNode-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+#    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-StateMachine-getState")
+#}
+
+#record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DataGenerationNode-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+#    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-StateMachine-setState")
+#}
+
+# Rest of PVs
+
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-data") {
+    field(DESC, "Generated data")
+    field(DTYP, "$(DATATYPE)")
+    field(FTVL, "DOUBLE")
+    field(NELM, "$(NELM)")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-data")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-dataAWG") {
+    field(DESC, "AWG Samples for signal generation")
+    field(DTYP, "$(DATATYPE)")
+    field(FTVL, "DOUBLE")
+    field(NELM, "$(NELM)")
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-dataAWG")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Decimation") {
+    field(DESC, "Decimation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Decimation")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Frequency") {
+    field(DESC, "Frequency")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(EGU, "Hz")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Frequency")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Frequency_RBV") {
+    field(DESC, "Generation frequency ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(EGU, "Hz")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Frequency_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-RefFrequency") {
+    field(DESC, "Reference frequency")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(EGU, "Hz")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-RefFrequency")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-RefFrequency_RBV") {
+    field(DESC, "Reference frequency ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(EGU, "Hz")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-RefFrequency_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Amplitude") {
+    field(DESC, "Amplitude")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(EGU, "-")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Amplitude")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Amplitude_RBV") {
+    field(DESC, "Amplitude ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(EGU, "-")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Amplitude_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Phase") {
+    field(DESC, "Phase")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(EGU, "-")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Phase")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Phase_RBV") {
+    field(DESC, "Phase ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(EGU, "-")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Phase_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-UpdateRate") {
+    field(DESC, "UpdateRate")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(EGU, "-")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-UpdateRate")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-UpdateRate_RBV") {
+    field(DESC, "UpdateRate ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(EGU, "-")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-UpdateRate_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-DutyCycle") {
+    field(DESC, "Signal Duty Cycle")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(EGU, "-")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-DutyCycle")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-DutyCycle_RBV") {
+    field(DESC, "Signal Duty Cycle ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(EGU, "-")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-DutyCycle_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Gain") {
+    field(DESC, "Gain of the Channel")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Gain")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Gain_RBV") {
+    field(DESC, "Gain of the Channel")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Gain_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Offset") {
+    field(DESC, "Offset")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Offset")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Offset_RBV") {
+    field(DESC, "Offset ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Offset_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Bandwidth") {
+    field(DESC, "Bandwidth")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Bandwidth")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Bandwidth_RBV") {
+    field(DESC, "Bandwidth ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Bandwidth_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Resolution") {
+    field(DESC, "Number of Bits per Sample")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Resolution")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Resolution_RBV") {
+    field(DESC, "Number of Bits per Sample ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Resolution_RBV")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Impedance") {
+    field(DESC, "Impedance: 50 ohm or Inf")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Impedance")
+    field(ZNAM, "50ohm")
+    field(ONAM, "Inf")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Impedance_RBV") {
+    field(DESC, "Impedance: 50 ohm or Inf, ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Impedance_RBV")
+    field(ZNAM, "50ohm")
+    field(ONAM, "Inf")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Coupling") {
+    field(DESC, "Coupling: AC or DC")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Coupling")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Coupling_RBV") {
+    field(DESC, "Coupling: AC or DC ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Coupling_RBV")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-SignalRefType") {
+    field(DESC, "Differential or Single Ended")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-SignalRefType")
+    field(ZNAM, "SingleEnded")
+    field(ONAM, "Differential")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-SignalRefType_RBV") {
+    field(DESC, "Differential or Single Ended")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-SignalRefType_RBV")
+    field(ZNAM, "SingleEnded")
+    field(ONAM, "Differential")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-SignalType") {
+    field(DESC, "Signal type generated")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-SignalType")
+    field(ZRVL, 0)
+    field(ZRST, "WAVEFORM")
+    field(ONVL, 1)
+    field(ONST, "SPLINE")
+    field(TWVL, 2)
+    field(TWST, "DC")
+    field(THVL, 3)
+    field(THST, "SINE")
+    field(FRVL, 4)
+    field(FRST, "SQUARE")
+    field(FVVL, 5)
+    field(FVST, "TRIANGLE")
+    field(SXVL, 6)
+    field(SXST, "PULSE")
+    field(SVVL, 7)
+    field(SVST, "RUNNING")
+    field(EIVL, 8)
+    field(EIST, "SAWTOOTH")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-SignalType_RBV") {
+    field(DESC, "Get global state")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-SignalType_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "WAVEFORM")
+    field(ONVL, 1)
+    field(ONST, "SPLINE")
+    field(TWVL, 2)
+    field(TWST, "DC")
+    field(THVL, 3)
+    field(THST, "SINE")
+    field(FRVL, 4)
+    field(FRST, "SQUARE")
+    field(FVVL, 5)
+    field(FVST, "TRIANGLE")
+    field(SXVL, 6)
+    field(SXST, "PULSE")
+    field(SVVL, 7)
+    field(SVST, "RUNNING")
+    field(EIVL, 8)
+    field(EIST, "SAWTOOTH")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Ground") {
+    field(DESC, "Ground State")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Ground")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-Ground_RBV") {
+    field(DESC, "Ground State ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-Ground_RBV")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+#record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-NumberOfPushedDataBlocks") {
+#    field(DESC, "Number Of Pushed Data Blocks")
+#    field(DTYP, "asynInt32")
+#    field(SCAN, "I/O Intr")
+#    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-NumberOfPushedDataBlocks")
+#}
+#
+#record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-StateMachine-setState") {
+#    field(DESC, "Set local state")
+#    field(DTYP, "asynInt32")
+#    field(SCAN, "Passive")
+#    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-StateMachine-setState")
+#    field(ONVL, 1)
+#    field(ONST, "OFF")
+#    field(FRVL, 4)
+#    field(FRST, "ON")
+#    field(SVVL, 7)
+#    field(SVST, "RUNNING")
+#}
+#
+#record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-StateMachine-getState") {
+#    field(DESC, "Get local state")
+#    field(DTYP, "asynInt32")
+#    field(SCAN, "I/O Intr")
+#    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-StateMachine-getState")
+#    field(ZRVL, 0)
+#    field(ZRST, "UNKNOWN")
+#    field(ONVL, 1)
+#    field(ONST, "OFF")
+#    field(TWVL, 2)
+#    field(TWST, "SWITCHING_OFF")
+#    field(THVL, 3)
+#    field(THST, "INITIALIZING")
+#    field(FRVL, 4)
+#    field(FRST, "ON")
+#    field(FVVL, 5)
+#    field(FVST, "STOPPING")
+#    field(SXVL, 6)
+#    field(SXST, "STARTING")
+#    field(SVVL, 7)
+#    field(SVST, "RUNNING")
+#    field(EIVL, 8)
+#    field(EIST, "FAULT")
+#}
+#
+#record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DATAGENERATION_NAME)-StateMachine-getGlobalState") {
+#    field(DESC, "Get global state")
+#    field(DTYP, "asynInt32")
+#    field(SCAN, "I/O Intr")
+#    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DATAGENERATION_NAME)-StateMachine-getGlobalState")
+#    field(ZRVL, 0)
+#    field(ZRST, "UNKNOWN")
+#    field(ONVL, 1)
+#    field(ONST, "OFF")
+#    field(TWVL, 2)
+#    field(TWST, "SWITCHING_OFF")
+#    field(THVL, 3)
+#    field(THST, "INITIALIZING")
+#    field(FRVL, 4)
+#    field(FRST, "ON")
+#    field(FVVL, 5)
+#    field(FVST, "STOPPING")
+#    field(SXVL, 6)
+#    field(SXST, "STARTING")
+#    field(SVVL, 7)
+#    field(SVST, "RUNNING")
+#    field(EIVL, 8)
+#    field(EIST, "FAULT")
+#}

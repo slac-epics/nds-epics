@@ -1,0 +1,27 @@
+file "nds3_DataAcquisition.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    DATAACQUISITION_NAME,
+    DATATYPE,
+    NELM
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "DataAcquisitionNode-",
+    "STM"
+    "DataAcquisitionNode",
+    "asynFloat64Array",
+    "128"
+}
+
+}

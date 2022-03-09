@@ -1,0 +1,23 @@
+file "nds3_HQMonitor.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    HQMONITOR_NAME,
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "HQMonitor-",
+    "StateMachine"
+    "HQMonitor",
+}
+
+}

@@ -1,0 +1,204 @@
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="HQMonitor-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="HQMonitor-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="HQMonitor-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-StateMachine-setState")
+}
+
+# Rest of PVs
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-DAQEnable") {
+    field(DESC, "Enable Monitoring of DAQ anomalies")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-DAQEnable")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-DAQEnable_RBV") {
+    field(DESC, "Enable Monitor of DAQ anomalies ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-DAQEnable_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-Decimation") {
+    field(DESC, "Decimation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-Decimation")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-DevCurrent") {
+    field(DESC, "Device Current")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-DevCurrent")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-DevPower") {
+    field(DESC, "Device Power")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-DevPower")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-DevTemperature") {
+    field(DESC, "Device Temperature")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-DevTemperature")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-DevVoltage") {
+    field(DESC, "Device Volt")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-DevVoltage")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-SEUEnable") {
+    field(DESC, "Enable Detection of Single Events Upsets")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-SEUEnable")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-SEUEnable_RBV") {
+    field(DESC, "Enable Detection of SEU ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-SEUEnable_RBV")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-SignalQFlag") {
+    field(DESC, "Read the flag of low quality signal")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-SignalQFlag")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-SignalQFlagTrigLevel") {
+    field(DESC, "Quality Flag trigger level")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-SignalQFlagTrigLevel")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-SignalQFlagTrigLevel_RBV") {
+    field(DESC, "Quality Flag trigger level ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-SignalQFlagTrigLevel_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestCodeResultEnable") {
+    field(DESC, "Enable Self-Test result number")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestCodeResultEnable")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestCodeResultEnable_RBV") {
+    field(DESC, "Enable Self-Test result number RBV")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestCodeResultEnable_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestEnable") {
+    field(DESC, "Enable (start) the Self-Test")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestEnable")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestEnable_RBV") {
+    field(DESC, "Enable the Self-Test ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestEnable_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestIDEnable") {
+    field(DESC, "Enable the Self-Test ID")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestIDEnable")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestIDEnable_RBV") {
+    field(DESC, "Enable the Self-Test ID ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestIDEnable_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestTxtEnable") {
+    field(DESC, "Enable the Self-Test text description")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestTxtEnable")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestTxtEnable_RBV") {
+    field(DESC, "Enable Self-Test text description RBV")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestTxtEnable_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestTxtResult") {
+    field(DESC, "Text detailing the Self-Test result")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM,"255")
+    field(SCAN, "I/O Intr")	
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestTxtResult")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestType") {
+    field(DESC, "Type of Self-Test")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestType")
+    field(ZRVL, 0)
+    field(ZRST, "Quick-Test")
+    field(ONVL, 1)
+    field(ONST, "Full-Test")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestType_RBV") {
+    field(DESC, "Type of Self-Test ReadBack")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestType_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "Quick-Test")
+    field(ONVL, 1)
+    field(ONST, "Full-Test")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestVerboseEnable") {
+    field(DESC, "Enable the Self-Test Verbose")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestVerboseEnable")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(HQMONITOR_NAME)-TestVerboseEnable_RBV") {
+    field(DESC, "Enable Self-Test Verbose RBV")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(HQMONITOR_NAME)-TestVerboseEnable_RBV")
+}
+

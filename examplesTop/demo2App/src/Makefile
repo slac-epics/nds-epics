@@ -17,10 +17,10 @@ demo2_DBD += base.dbd
 
 # Include dbd files from all support applications:
 demo2_DBD += asyn.dbd
-demo2_DBD += nds3epics.dbd
+demo2_DBD += nds3-epics.dbd
 
 # Add all the support libraries needed by this IOC
-demo2_LIBS += oscilloscope nds3epics nds3 asyn
+demo2_LIBS += oscilloscope nds3-epics nds3 asyn
 
 # Where to find the oscilloscope driver and enforce linking
 oscilloscope_DIR += $(NDS3OSCILLOSCOPE)

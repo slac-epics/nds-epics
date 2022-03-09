@@ -1,0 +1,77 @@
+file "nds3_DataMultiplexing.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    DATASCHEDULING_NAME,
+    DATASCHEDULING_REASON,
+}
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "DMUX4-",
+    "StateMachine",
+    "DMUX4",
+    "DataMultiplexing_4_float",
+}
+
+}
+
+# Output channel
+file "nds3_DataScheduling_ChannelOut.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    DATASCHEDULING_NAME,
+    DATASCHEDULING_REASON,
+    INDEX,
+    TYPE,
+    FTVL,
+    NELM,
+}
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "DMUX4",
+    "DataMultiplexing_4_float",
+    "0",
+    "Float32",
+    "FLOAT",
+    "80",
+}
+}
+
+
+# Source PVs
+file "DeviceDataMultiplexing.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    DATAMULTIPLEXING_NAME,
+    DATAMULTIPLEXING_REASON,
+    NELM,
+}
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "",
+    "",
+    "20",
+}
+}

@@ -1,0 +1,364 @@
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-BoolArray") {
+    field(DESC, "Bool array to be set")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)BoolArray")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-BoolArray_RBV") {
+    field(DESC, "Bool that has been set (RBV)")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)BoolArray_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Float") {
+    field(DESC, "Float to be set")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Float")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Float_RBV") {
+    field(DESC, "Float that has been set (RBV)")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Float_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-FloatArray") {
+    field(DESC, "FloatArray to be set")
+    field(DTYP, "asynFloat32ArrayOut")
+    field(FTVL, "FLOAT")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)FloatArray")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-FloatArray_RBV") {
+    field(DESC, "DoubleArray that has been set (RBV)")
+    field(DTYP, "asynFloat32ArrayIn")
+    field(FTVL, "FLOAT")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)FloatArray_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Double") {
+    field(DESC, "Double to be set")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Double")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-DoubleArray") {
+    field(DESC, "DoubleArray to be set")
+    field(DTYP, "asynFloat64ArrayOut")
+    field(FTVL, "DOUBLE")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)DoubleArray")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-DoubleArray_RBV") {
+    field(DESC, "DoubleArray that has been set (RBV)")
+    field(DTYP, "asynFloat64ArrayIn")
+    field(FTVL, "DOUBLE")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)DoubleArray_RBV")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Double_RBV") {
+    field(DESC, "Double that has been set (RBV)")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Double_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int16Array") {
+    field(DESC, "Int16Array to be set")
+    field(DTYP, "asynInt16ArrayOut")
+    field(FTVL, "SHORT")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int16Array")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int16Array_RBV") {
+    field(DESC, "Int16Array that has been set (RBV)")
+    field(DTYP, "asynInt16ArrayIn")
+    field(FTVL, "SHORT")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int16Array_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int32Array") {
+    field(DESC, "Int32Array to be set")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int32Array")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int32Array_RBV") {
+    field(DESC, "Int32Array that has been set (RBV)")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int32Array_RBV")
+}
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int64Array") {
+    field(DESC, "Int64Array to be set")
+    field(DTYP, "asynInt64ArrayOut")
+    field(FTVL, "INT64")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int64Array")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int64Array_RBV") {
+    field(DESC, "Int64Array that has been set (RBV)")
+    field(DTYP, "asynInt64ArrayIn")
+    field(FTVL, "INT64")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int64Array_RBV")
+}
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int8Array") {
+    field(DESC, "Int8Array to be set")
+    field(DTYP, "asynInt8ArrayOut")
+    field(FTVL, "CHAR")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int8Array")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Int8Array_RBV") {
+    field(DESC, "Int8Array that has been set (RBV)")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Int8Array_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Integer") {
+    field(DESC, "Integer to be set")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Integer")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Integer_RBV") {
+    field(DESC, "Integer that has been set (RBV)")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Integer_RBV")
+}
+record(int64out, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Integer64") {
+    field(DESC, "Integer64 to be set")
+    field(DTYP, "asynInt64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Integer64")
+}
+
+record(int64in, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Integer64_RBV") {
+    field(DESC, "Integer64 that has been set (RBV)")
+    field(DTYP, "asynInt64")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Integer64_RBV")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-ReplicatedDouble") {
+    field(DESC, "Input PV to receive double data")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)ReplicatedDouble")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-ReplicatedInt") {
+    field(DESC, "Input PV to receive integer data")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)ReplicatedInt")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-ShareData") {
+    field(DESC, "Increase selected source PV")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)ShareData")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-SourceDouble") {
+    field(DESC, "Input PV to send double data")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)SourceDouble")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-SourceInt") {
+    field(DESC, "Input PV to send integer data")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)SourceInt")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-String") {
+    field(DESC, "String to be set")
+    field(DTYP, "asynInt8ArrayOut")
+    field(FTVL, "CHAR")
+    field(NELM, 255)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)String")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-String_RBV") {
+    field(DESC, "String that has been set (RBV)")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "CHAR")
+    field(NELM, 255)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)String_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Timespec") {
+    field(DESC, "Timespec to be set")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, 2)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Timespec")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Timespec_RBV") {
+    field(DESC, "Timespec that has been set (RBV)")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, 2)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Timespec_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-TimespecArray") {
+    field(DESC, "TimespecArray to be set")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, 4)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)TimespecArray")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-TimespecArray_RBV") {
+    field(DESC, "TimespecArray that has been set (RBV)")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, 4)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)TimespecArray_RBV")
+}
+
+
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Timestamp") {
+    field(DESC, "Timestamp to be set")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, 4)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Timestamp")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-Timestamp_RBV") {
+    field(DESC, "Timestamp that has been set (RBV)")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(PINI, 1)
+    field(NELM, 4)
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)Timestamp_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-UInt16Array") {
+    field(DESC, "UInt16Array to be set")
+    field(DTYP, "asynInt16ArrayOut")
+    field(FTVL, "SHORT")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)UInt16Array")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-UInt16Array_RBV") {
+    field(DESC, "UInt16Array that has been set (RBV)")
+    field(DTYP, "asynInt16ArrayIn")
+    field(FTVL, "SHORT")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)UInt16Array_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-UInt32Array") {
+    field(DESC, "UInt32Array to be set")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)UInt32Array")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-UInt32Array_RBV") {
+    field(DESC, "UInt32Array that has been set (RBV)")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)UInt32Array_RBV")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-UInt8Array") {
+    field(DESC, "UInt8Array to be set")
+    field(DTYP, "asynInt8ArrayOut")
+    field(FTVL, "UCHAR")
+    field(NELM, 5)
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)UInt8Array")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DEVICEPV_NAME)-UInt8Array_RBV") {
+    field(DESC, "UInt8Array that has been set (RBV)")
+    field(DTYP, "asynInt8ArrayIn")
+    field(FTVL, "UCHAR")
+    field(NELM, 5)
+    field(SCAN, "I/O Intr")
+    field(PINI, 1)
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)UInt8Array_RBV")
+}
+

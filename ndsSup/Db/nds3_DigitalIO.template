@@ -1,0 +1,117 @@
+#Template Digital IO 
+
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DigitalIONode-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DigitalIONode-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="DigitalIONode-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-StateMachine-setState")
+}
+
+# Rest of PVs
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-DataIn") {
+    field(DESC, "digital input")
+    field(DTYP, "$(DEVTYPE)In")
+    field(FTVL, "$(DATATYPE)")
+    field(NELM, "$(NELM)")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-DataIn")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-DataOut") {
+    field(DESC, "digital output")
+    field(DTYP, "$(DEVTYPE)Out")
+    field(FTVL, "$(DATATYPE)")
+    field(NELM, "$(NELM)")
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-DataOut")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-DataOutMask") {
+    field(DESC, "Digital output mask")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, "$(BUSWIDTH)")
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-DataOutMask")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-DataOutMask_RBV") {
+    field(DESC, "Digital Output Mask ReadBack")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, "$(BUSWIDTH)")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-DataOutMask_RBV")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-Decimation") {
+    field(DESC, "Decimation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-Decimation")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-VoltLevelHigh") {
+    field(DESC, "Volt Level High")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-VoltLevelHigh")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-VoltLevelHigh_RBV") {
+    field(DESC, "Volt Level High ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-VoltLevelHigh_RBV")
+}
+
+record(ao, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-VoltLevelLow") {
+    field(DESC, "Volt Level Low")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-VoltLevelLow")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-VoltLevelLow_RBV") {
+    field(DESC, "Volt Level Low ReadBack")
+    field(DTYP, "asynFloat64")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-VoltLevelLow_RBV")
+}
+#TODO add in/out case.
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-ChannelDir") {
+    field(DESC, "Channel Direction: In/Out")
+    field(DTYP, "asynInt32ArrayOut")
+    field(FTVL, "LONG")
+    field(NELM, "$(BUSWIDTH)")
+    field(SCAN, "Passive")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-ChannelDir")
+
+}
+#TODO add in/out case.
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-ChannelDir_RBV") {
+    field(DESC, "Channel Direction: In/Out ReadBack")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, "$(BUSWIDTH)")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-ChannelDir_RBV")
+}
+
+record(ai, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(DIGITALIO_NAME)-NumberOfPushedDataBlocks") {
+    field(DESC, "Number Of Pushed Data Blocks")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(DIGITALIO_NAME)-NumberOfPushedDataBlocks")
+}

@@ -1,0 +1,136 @@
+# Based on the nds_StateMachine.template file, it is loaded and the 
+# reasons are modified in its PVs according to the local node.
+
+include "nds3_StateMachine.template"
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="Timestamping-")$(STATEMACHINE_NAME="StateMachine")-getGlobalState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMESTAMPING_NAME)-StateMachine-getGlobalState")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="Timestamping-")$(STATEMACHINE_NAME="StateMachine")-getState") {
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMESTAMPING_NAME)-StateMachine-getState")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(STATEMACHINE_PARENT="Timestamping-")$(STATEMACHINE_NAME="StateMachine")-setState") {
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX), 0)$(TIMESTAMPING_NAME)-StateMachine-setState")
+}
+
+# Rest of PVs
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-ClearOverflow") {
+    field(DESC, "Clear timestamp overflow error")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-ClearOverflow")
+}
+
+record(longout, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Decimation") {
+    field(DESC, "Decimation")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-Decimation")
+}
+
+record(mbbo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Edge") {
+    field(DESC, "Set timestamp edge detection")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-Edge")
+    field(ZRVL, 0)
+    field(ZRST, "RISING")
+    field(ONVL, 1)
+    field(ONST, "FALLING")
+    field(TWVL, 2)
+    field(TWST, "ANY")
+}
+
+record(mbbi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Edge_RBV") {
+    field(DESC, "Get timestamping edge detection")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-Edge_RBV")
+    field(ZRVL, 0)
+    field(ZRST, "RISING")
+    field(ONVL, 1)
+    field(ONST, "FALLING")
+    field(TWVL, 2)
+    field(TWST, "ANY")
+}
+
+record(bo, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Enable") {
+    field(DESC, "Enable/Disable timestamping")
+    field(DTYP, "asynInt32")
+    field(SCAN, "Passive")
+    field(OUT, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-Enable")
+    field(ZNAM, "DISABLE")
+    field(ONAM, "ENABLE")
+    field(VAL,0)
+}
+
+record(bi, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Enable_RBV") {
+    field(DESC, "Timestamping status: Enabled/Disable")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-Enable_RBV")
+    field(ZNAM, "DISABLE")
+    field(ONAM, "ENABLE")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-MaxTimestamps") {
+    field(DESC, "Maximum number of timestamps (FIFO size)")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-MaxTimestamps")
+}
+
+record(longin, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Overflow") {
+    field(DESC, "Get timestamps queue overflow status")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-Overflow")
+}
+
+record(waveform, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Timestamps") {
+    field(DESC, "Timestamp (sec,ns), ID, Edge")
+    field(DTYP, "asynInt32ArrayIn")
+    field(FTVL, "LONG")
+    field(NELM, 4)
+    field(SCAN, "I/O Intr")
+    field(INP, "@asyn($(BOARDTYPE)-$(BOARDTYPEIDX),0)$(TIMESTAMPING_NAME)-Timestamps")
+}
+
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-TimestampsSec" ) {
+	field(DESC, "Timestamp Seconds")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Timestamps CP MS")
+	field(EGU,  "s")
+	field(MALM, "4")
+	field(INDX, "0")
+}
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-TimestampsNano" ) {
+	field(DESC, "Timestamp Nanoseconds")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Timestamps CP MS")
+	field(EGU,  "ns")
+	field(MALM, "4")
+	field(INDX, "1")
+}
+
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-TimestampsID" ) {
+	field(DESC, "Timestamp ID")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Timestamps CP MS")
+	field(MALM, "4")
+	field(INDX, "2")
+}
+
+record(subArray, "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-TimestampsIsRising" ) {
+	field(DESC, "Timestamp Rising")
+	field(FTVL, "LONG")
+	field(INP,  "$(CBS1)-$(CBS2)-HWCF:$(BOARDTYPE)-$(BOARDTYPEIDX)-$(TIMESTAMPING_NAME)-Timestamps CP MS")
+	field(MALM, "4")
+	field(INDX, "3")
+}

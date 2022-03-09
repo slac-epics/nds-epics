@@ -1,0 +1,23 @@
+file "nds3_FTE.template" {
+pattern
+{
+    BOARDTYPE,
+    BOARDTYPEIDX,
+    CBS1,
+    CBS2,
+    STATEMACHINE_PARENT,
+    STATEMACHINE_NAME,
+    FTE_NAME
+}
+    
+{
+    "B",
+    "0",
+    "TEST",
+    "FCT0",
+    "FTENode-",
+    "STM"
+    "FTENode"
+}
+
+}
