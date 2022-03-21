@@ -12,6 +12,9 @@ fi
 # terminate script after first line that fails
 set -e
 
+if [ ! -f ".gitmodules" ]; then
+    git clone https://github.com/pheest/nds-core
+fi
 pushd nds-core
 chmod +x ./scripts/ci-build.sh
 

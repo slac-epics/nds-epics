@@ -23,6 +23,7 @@ variables:
   CMP: "gcc"
   BGFC: "default"
   SET: stable
+  CLEAN_DEPS: "NO"
 
 # Template for build jobs (hidden)
 .build:
