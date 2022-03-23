@@ -61,8 +61,8 @@ else
     cp -r ./nds-core/include/nds3/ ./include/
     mkdir -p ./lib/linux-x86_64
     mkdir -p ./bin/linux-x86_64
-    cp ./nds-core/build/x86_64-linux/libnds3.so ./bin/linux-x86_64/
-    cp ./nds-core/doc/examples/build/x86_64-linux/liboscilloscope.so ./bin/linux-x86_64/
+    cp ./nds-core/build/x86_64-linux/libnds3.so ./lib/linux-x86_64/
+    cp ./nds-core/doc/examples/build/x86_64-linux/liboscilloscope.so ./lib/linux-x86_64/
 fi
 
 
