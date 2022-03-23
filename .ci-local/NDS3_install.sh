@@ -13,7 +13,16 @@ fi
 set -e
 
 if [ ! -f ".gitmodules" ]; then
-    git clone https://github.com/pheest/nds-core
+    if [ -d "nds-core" ]; then
+        pushd nds-core
+        git pull https://github.com/pheest/nds-core
+        popd
+    else
+        git clone https://github.com/pheest/nds-core
+    fi
+elif [ -d "nds-core" ] && [ -d "nds-core\.git" ]; then
+    # Reversing the above approach.
+    rm -r nds-core
 fi
 pushd nds-core
 chmod +x ./scripts/ci-build.sh
@@ -47,6 +56,13 @@ elif [ "$WINE" == "32" ]; then
     cp ./nds-core/build/i686-w64-mingw32/libnds3.dll ./bin/win32-x86-mingw/
     cp ./nds-core/doc/examples/build/i686-w64-mingw32/liboscilloscope.dll.a ./lib/win32-x86-mingw/
     cp ./nds-core/doc/examples/build/i686-w64-mingw32/liboscilloscope.dll ./bin/win32-x86-mingw/
+else
+    mkdir -p ./include
+    cp -r ./nds-core/include/nds3/ ./include/
+    mkdir -p ./lib/linux-x86_64
+    mkdir -p ./bin/linux-x86_64
+    cp ./nds-core/build/x86_64-linux/libnds3.so ./bin/linux-x86_64/
+    cp ./nds-core/doc/examples/build/x86_64-linux/liboscilloscope.so ./bin/linux-x86_64/
 fi
 
 
