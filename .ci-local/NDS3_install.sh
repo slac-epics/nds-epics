@@ -24,12 +24,18 @@ elif [ -d "nds-core" ] && [ -d "nds-core\.git" ]; then
     # Reversing the above approach.
     rm -r nds-core
 fi
-pushd nds-core
-chmod +x ./scripts/ci-build.sh
 
+pushd nds-core
 # NB, the EPICS cross build requires the native build first!
 ./scripts/ci-build.sh x86_64-linux
 popd
+chmod +x ./scripts/ci-build.sh
+mkdir -p ./include
+cp -r ./nds-core/include/nds3/ ./include/
+mkdir -p ./lib/linux-x86_64
+mkdir -p ./bin/linux-x86_64
+cp ./nds-core/build/x86_64-linux/libnds3.so ./lib/linux-x86_64/
+cp ./nds-core/doc/examples/build/x86_64-linux/liboscilloscope.so ./lib/linux-x86_64/
 
 # These files are created by the NDS build, wheras Linux builds install to a system folder.
 if [ "$WINE" == "64" ]; then
@@ -56,13 +62,4 @@ elif [ "$WINE" == "32" ]; then
     cp ./nds-core/build/i686-w64-mingw32/libnds3.dll ./bin/win32-x86-mingw/
     cp ./nds-core/doc/examples/build/i686-w64-mingw32/liboscilloscope.dll.a ./lib/win32-x86-mingw/
     cp ./nds-core/doc/examples/build/i686-w64-mingw32/liboscilloscope.dll ./bin/win32-x86-mingw/
-else
-    mkdir -p ./include
-    cp -r ./nds-core/include/nds3/ ./include/
-    mkdir -p ./lib/linux-x86_64
-    mkdir -p ./bin/linux-x86_64
-    cp ./nds-core/build/x86_64-linux/libnds3.so ./lib/linux-x86_64/
-    cp ./nds-core/doc/examples/build/x86_64-linux/liboscilloscope.so ./lib/linux-x86_64/
 fi
-
-
