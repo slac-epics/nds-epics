@@ -26,10 +26,10 @@ elif [ -d "nds-core" ] && [ -d "nds-core\.git" ]; then
 fi
 
 pushd nds-core
+chmod +x ./scripts/ci-build.sh
 # NB, the EPICS cross build requires the native build first!
 ./scripts/ci-build.sh x86_64-linux
 popd
-chmod +x ./scripts/ci-build.sh
 mkdir -p ./include
 cp -r ./nds-core/include/nds3/ ./include/
 mkdir -p ./lib/linux-x86_64
