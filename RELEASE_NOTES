@@ -1,0 +1,8 @@
+#==============================================================
+#  RELEASE_NOTES
+#  Release notes for the nds-epics module.
+#  From: https://github.com/pheest/nds3_epics
+#--------------------------------------------------------------
+
+R3.1.0-0.0.1  May 6, 2024  M. Dunning (mdunning)
+    Modify for SLAC workflow.  Tested with ADQ14 PCIe digitizer.

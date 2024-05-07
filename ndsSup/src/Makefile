@@ -5,36 +5,46 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
 
-#==================================================
-# build a support library
+USR_CPPFLAGS=-std=c++11 -Wall -Wextra -pedantic -fPIC -pthread
 
-LIBRARY_IOC += nds3-epics
+USR_INCLUDES += -I$(NDS3_INCLUDE)
 
-# install nds3-epics.dbd into <top>/dbd
-DBD += nds3-epics.dbd
+# ======================================================
+# PATH TO "NON EPICS" EXTERNAL PACKAGES: USER LIBRARIES
+# ======================================================
+nds3_DIR = $(NDS3_LIB)
+
+# ======================================================
+# LINK "NON EPICS" EXTERNAL PACKAGE LIBRARIES STATICALLY
+#=======================================================
+USR_LIBS_Linux += nds3
+
+#======================================================
+# Build an IOC support library
+#======================================================
+PROD_NAME = nds3epics
+LIBRARY_IOC += $(PROD_NAME)
+
+# Install dbd files
+DBD += $(PROD_NAME).dbd
+
+$(PROD_NAME)_DBD += base.dbd
+$(PROD_NAME)_DBD += asyn.dbd
+$(PROD_NAME)_DBD += nds3epicsSupport.dbd
 
 INC += nds3/impl/epicsFactoryImpl.h
 INC += nds3/impl/epicsInterfaceImpl.h
 INC += nds3/impl/epicsThread.h
 
-USR_INCLUDES_WIN32 += -I../../../nds-core/include
+# The following are compiled and added to the support library
+$(PROD_NAME)_SRCS += epicsFactoryImpl.cpp
+$(PROD_NAME)_SRCS += epicsInterfaceImpl.cpp
+$(PROD_NAME)_SRCS += epicsThread.cpp
+$(PROD_NAME)_SRCS += ndsRegister.cpp
 
-# Include flag -DAUTOGEN_DB if auto generated db files wanted (not tested)
-USR_CXXFLAGS_Linux=-std=c++11 -Wall -Wextra -pedantic -g
-USR_CXXFLAGS_WIN32=-DNOMINMAX -DAUTOGEN_DB -DNO_TCN
+$(PROD_NAME)_LIBS += asyn
 
-# specify all source files to be compiled and added to the library
-nds3-epics_SRCS += epicsFactoryImpl.cpp
-nds3-epics_SRCS += epicsInterfaceImpl.cpp
-nds3-epics_SRCS += epicsThread.cpp
-nds3-epics_SRCS += ndsRegister.cpp
-
-# Not strictly needed, but creates useful info in the library
-
-nds3-epics_LIBS += asyn
-nds3-epics_LIBS += $(EPICS_BASE_IOC_LIBS)
-nds3-epics_SYS_LIBS_Linux += nds3
-nds3-epics_LIBS_WIN32 += nds3
+$(PROD_NAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 

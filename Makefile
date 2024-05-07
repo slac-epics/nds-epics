@@ -6,7 +6,7 @@ include $(TOP)/configure/CONFIG
 DIRS += configure
 DIRS += $(wildcard *Sup)
 DIRS += $(wildcard *App)
-DIRS += $(wildcard *Top)
+#DIRS += $(wildcard *Top)
 DIRS += $(wildcard iocBoot)
 
 # The build order is controlled by these dependency rules:
